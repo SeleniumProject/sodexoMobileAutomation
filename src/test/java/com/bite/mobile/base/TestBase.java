@@ -25,8 +25,8 @@ public class TestBase {
 	
 	
 	public static AppiumDriver<MobileElement> driver;
-//	public static String loadPropertyFile = "Android_biteapp.properties";
-	public static String loadPropertyFile = "IOS_biteapp.properties";
+	public static String loadPropertyFile = "Android_biteapp.properties";
+//	public static String loadPropertyFile = "IOS_biteapp.properties";
 	//public static String loadPropertyFile = "ios_careapp.properties";
 	public static ExtentTest test;
 	public static ExtentReports extent;

@@ -4,11 +4,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.bite.mobile.base.ScreenBase;
 import com.bite.mobile.base.TestBase;
 import com.bite.mobile.lib.android.CreateanAccountLib_android;
 import com.bite.mobile.lib.android.HomeScreenLib_android;
 import com.bite.mobile.lib.android.LoginScreenLib_android;
 import com.bite.mobile.lib.android.MenusScreenLib_android;
+import com.bite.mobile.lib.android.ReviewScreenLib_android;
 import com.bite.mobile.utility.TestUtil;
 
 public class EndToEndScript_android extends TestBase{
@@ -18,6 +21,7 @@ public class EndToEndScript_android extends TestBase{
 	LoginScreenLib_android login;
 	CreateanAccountLib_android signup;
 	MenusScreenLib_android menus;
+	ReviewScreenLib_android review;
 	@BeforeTest
 	public void init(){
 	
@@ -25,61 +29,68 @@ public class EndToEndScript_android extends TestBase{
 	   login = new LoginScreenLib_android(driver);
 	   signup = new CreateanAccountLib_android(driver);
 	   menus = new MenusScreenLib_android(driver);
+	   review = new ReviewScreenLib_android(driver);
 	}
 	
 	
 	@Test(priority = 0, dataProvider="launch")
-	public void LaunchBiteApp(String location) throws InterruptedException{
-		Thread.sleep(2000);
+	public void LaunchBiteApp(String location) throws Throwable{
 			test = extent.startTest("TS01_Bite App: Launch App and Search For Location");
 			try {
-				Thread.sleep(4000);
-			home.LaunchApp(location);
-		} catch (Throwable e) {
-			
-			e.printStackTrace();
-		}
-	}
-	
-	@Test(priority =1, dataProvider = "CreateAccountData" )
-	public void CreateAnAccount(String email, String createAnAccountlbl,  String nextletscreateaccountlbl, String firstName, String  lastName, String password, String verifyPwd, String  monthoption, String yearoption, String genderoption, String phoneoption ) throws Throwable
-	{
-		test = extent.startTest("TS02_Bite App: Create an Account");
-         email = signup.SetEmail();
-      
-		try {
-			signup.CreateAnAccount(email, createAnAccountlbl, nextletscreateaccountlbl, firstName, lastName, password, verifyPwd, monthoption, yearoption, genderoption, phoneoption);
-	       
-	       	
+			home.launchApp();
+			home.searchAndSelectLocation(location);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	@Test(priority = 2)
-	public void SelectingItem() {
+	@Test(enabled = false, priority =1, dataProvider = "CreateAccountData" )
+	public void createAnAccount(String email, String createAnAccountlbl,  String nextletscreateaccountlbl, String firstName, String  lastName, String password, String verifyPwd, String  monthoption, String yearoption, String genderoption, String phoneoption ) throws Throwable
+	{
+		test = extent.startTest("TS02_Bite App: Create an Account");
+        email = signup.setEmail();
+		try {
+			signup.createAnAccount(email, createAnAccountlbl, nextletscreateaccountlbl, firstName, lastName, password, verifyPwd, monthoption, yearoption, genderoption, phoneoption);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority =1, dataProvider = "login" )
+	public void Login(String email, String password) {
+		test = extent.startTest("TS03_Bite App: Login to Bite App");
+				
+			try {
+				signup.enterEmailPressNext(email);
+				login.Login(email, password);
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}		
+	}
+	
+	@Test(priority =2, dataProvider = "menuData" )
+	public void selectingItem(String menuType, String itemName) {
 		test = extent.startTest("TS03_Bite App: Selecting menu and item");
-		
+		int day = ScreenBase.convertDate();
        	try {
-			Thread.sleep(1500);
-			menus.selectMenu("Corporate Master Menu");
-		   	menus.selectDateAndItem("Roast Turkey");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			menus.selectMenu(menuType);
+		   	menus.selectDateAndItem(day, itemName);
+		   	menus.ReviewButton();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     
 	}
 	@Test(priority = 3)
-	public void ReviewOrder() {
+	public void reviewOrder() {
 		test = extent.startTest("TS04_Bite App: Review Order with Rating");
 		
        	try {
-			Thread.sleep(1500);
-			menus.selectMenu("Corporate Master Menu");
-		   	menus.selectDateAndItem("Roast Turkey");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			review.fillReview("Good menu");
+			review.backToOrderMenu();
+			menus.selectOrder("HBO");
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     
@@ -90,9 +101,19 @@ public class EndToEndScript_android extends TestBase{
 		return TestUtil.getData("launch");
 	}
 	
+	@DataProvider(name="login")
+	public static Object[][] login() {
+		return TestUtil.getData("login");
+	}
+	
 	@DataProvider(name="CreateAccountData")
 	public static Object[][] CreateAccountData() {
 		return TestUtil.getData("createanaccount");
+	}
+	
+	@DataProvider(name="menuData")
+	public static Object[][] menuData() {
+		return TestUtil.getData("menuData");
 	}
 	
 	@AfterTest
@@ -100,7 +121,6 @@ public class EndToEndScript_android extends TestBase{
 		extent.endTest(test);
 		extent.flush();
 		extent.close();
-		driver.close();
 		System.out.println("Ending Script....");
 	}
 

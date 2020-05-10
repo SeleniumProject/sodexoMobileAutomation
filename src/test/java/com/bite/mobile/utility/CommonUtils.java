@@ -1,5 +1,6 @@
 package com.bite.mobile.utility;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -35,7 +36,9 @@ public class CommonUtils {
 	public static String BUNDLE_ID;
 	public static String APP;
 	public static String AUTOMATION_INSTRUMENTATION;
-
+	private static String reportDirectory = "reports";
+	private static String reportFormat = "html";
+	private static String testName = "Bite App Test Automation";
 	private static Properties prop = new Properties();
 	private static DesiredCapabilities capabilities = new DesiredCapabilities();
 	
@@ -115,22 +118,29 @@ public class CommonUtils {
 	// setAndroidCap
 
 	public static void setAndroidCapabilities() {
+		capabilities.setCapability("reportDirectory", reportDirectory);
+		capabilities.setCapability("reportFormat", reportFormat);
+		capabilities.setCapability("testName", testName);
 
-		//capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BROWSER_NAME);
+		String path = System.getProperty("user.dir");
+		String otherFolder = path + "\\src\\test\\resources\\app";
+		File appDir = new File(otherFolder);
+		File app = new File(appDir, "com.sodexo.noram.stage.com.apk");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, PLATFORM_NAME);
-		//capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, PLATFORM_VERSION);
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
 //		capabilities.setCapability("resetKeyboard", true);
 //		capabilities.setCapability("unicodeKeyboard", true);
 //		capabilities.setCapability("auto	ceptAlerts", true);
-//		capabilities.setCapability("autoDismissAlerts", true);
-		//capabilities.setCapability("skipUnlock","true");
-        capabilities.setCapability("noReset","false");
-//		capabilities.setCapability("fullReset","true");
-		capabilities.setCapability("takesScreenshot",true);
-		capabilities.setCapability("dataReset",true);
-//		capabilities.setCapability("unicodeKeyboard", true);
 //		capabilities.setCapability("resetKeyboard", true);
+//		capabilities.setCapability("unicodeKeyboard", true);
+		capabilities.setCapability("auto	ceptAlerts", true);
+		capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+		capabilities.setCapability("skipUnlock", "true");
+		capabilities.setCapability("autoDismissAlerts", true);
+//		capabilities.setCapability("instrumentApp", true);
+		capabilities.setCapability("fullReset", "true");
+		capabilities.setCapability("takesScreenshot", true);
+		capabilities.setCapability("dataReset", true);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, BASE_PKG);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
 

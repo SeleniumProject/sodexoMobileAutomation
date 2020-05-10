@@ -14,22 +14,25 @@ public class LoginScreen_android extends ScreenBase {
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
 
 	}
-	public static By SigninSignupbtn;
-	public static By emailtxt;
-	public static By passwordtxt;
-	public static By signinbtn;
+	public static By signintitle;
+	public static By pleasesigninlbl;
+	public static By emailedittxt;
+	public static By passwordedittxt;
+	public static By signinsignupbtn;
+	public static By forgotpasswordlink;
+	public static By bycontinuinglbl;
 
 	
 
 	static {
 		
-		SigninSignupbtn = By.xpath("//android.widget.Button[@text='SIGN IN / SIGN UP']");
-		emailtxt = By.xpath("//*[@id='logonIdentifier']");
-		passwordtxt = By.xpath("//*[@id='password']");
-		signinbtn = By.xpath("//*[@text='SIGN IN']");
-	
-		
-		
+		signintitle = By.xpath("//android.widget.Button[@text='SIGN IN / SIGN UP']");
+		pleasesigninlbl = By.xpath("//*[@text='Please sign in with your Bite account email and password you previously set up.']");
+		emailedittxt = By.xpath("//android.widget.EditText[contains(text(),'mail')]");
+		passwordedittxt = By.xpath("//android.widget.EditText[contains(text(),'Password')]");
+		signinsignupbtn = By.xpath("//*[@text='SIGN IN / SIGN UP']");
+		forgotpasswordlink = By.xpath("//*[@text='FORGOT PASSWORD']");
+		forgotpasswordlink = By.xpath("//*[@text=concat('By continuing, you', \"'\", 'll be agreeing to our')]");
 
 	}
 	

@@ -1,9 +1,6 @@
 package com.bite.mobile.lib.iOS;
 
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.android.HomeScreen_android;
-import com.bite.mobile.screens.android.LoginScreen_android;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
@@ -22,17 +19,6 @@ public class LoginScreenLib_ios extends ScreenBase{
 	public void Login(String email, String password) throws Throwable {
 		try {
 
-            click(LoginScreen_android.SigninSignupbtn, SignSignUpBtn);
-            Thread.sleep(3000);
-            Tap(505, 1702, emailtxt);
-            keyBoardSendKeys(email);
-            Thread.sleep(3000);
-            Tap(379, 1683, passwordtxt);
-            keyBoardSendKeys(password);
-            Thread.sleep(3000);
-           // Type(LoginScreen.emailtxt, email, emailtxt);
-           // Type(LoginScreen.passwordtxt, password, passwordtxt);
-            click(LoginScreen_android.signinbtn, signinbtn);
             Thread.sleep(3000);
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -7,6 +7,10 @@ import io.appium.java_client.MobileElement;
 
 public class CreateanAccountLib_android extends ScreenBase{
 
+	/**
+	 * author : Ramesh K
+	 * Name of the Elements in the Page or Screen
+	 */
 	public String  createAnaccountlable ="Create an Account";
 	public String  emailtxt ="Email";
 	public String  nextbtn="Next";
@@ -28,17 +32,21 @@ public class CreateanAccountLib_android extends ScreenBase{
 	public String allDonebtn ="ALL DONE !";
 	public String notnowlink ="Not Now link";
 	
+	/***
+	 * Constructor of CreateAccount Library
+	 * @param driver
+	 */
 	public CreateanAccountLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		
 	}
 
-	public void CreateAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,
+	public void createAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,
 			String password, String verifyPwd, String monthoption, String yearoption, String genderoption, String phoneoption) throws Throwable {
 		try {
 			   Thread.sleep(2500);
-			String actualText = getText(CreateAccountScreen_android.createAnaccountlbl);
-			System.out.println(actualText +" Create Account lable");
+			 String actualText = getText(CreateAccountScreen_android.createAnaccountlbl);
+			 System.out.println(actualText +" Create Account lable");
 		     Assert.assertEquals(actualText, createAnAccountlbl);
 		     Type(CreateAccountScreen_android.emailtxt, email, emailtxt);
 		     click(CreateAccountScreen_android.nextbtn, nextbtn);
@@ -73,7 +81,12 @@ public class CreateanAccountLib_android extends ScreenBase{
     
 	
 	}
-	public String SetEmail() {
+	
+	public void enterEmailPressNext(String email) {
+	     Type(CreateAccountScreen_android.emailtxt, email, emailtxt);
+	     click(CreateAccountScreen_android.nextbtn, nextbtn);
+	}
+	public String setEmail() {
 		String email = CreateAccountScreen_android.RandomEmail();
 		return email;
 	}

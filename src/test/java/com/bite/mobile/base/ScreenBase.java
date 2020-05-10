@@ -1,5 +1,12 @@
 package com.bite.mobile.base;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.relevantcodes.extentreports.LogStatus;
@@ -23,6 +30,15 @@ public class ScreenBase extends TestBase {
 
 		ScreenBase.driver = driver;
 
+	}
+	
+	public void waitForElementNoLongerPresent(long timeout) {
+		
+		new WebDriverWait(driver, timeout).until(
+
+		        ExpectedConditions.not(
+
+		                ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='android.widget.ProgressBar']"))));
 	}
 
 	public void hideKeyboard() {
@@ -53,7 +69,7 @@ public class ScreenBase extends TestBase {
 
 	public void Type(By elementLocator, String value, String name) {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(2200);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
@@ -81,9 +97,8 @@ public class ScreenBase extends TestBase {
 
 	public void Tap(int x, int y, String name) {
 		try {
-			
+			Thread.sleep(2500);
 			(new TouchAction(driver)).tap(x, y).release().perform();
-			test.log(LogStatus.PASS, "To Verify is User able to Tap on " + name, name + " Tapped successfully");
 		} catch (Exception e) {
 //			test.log(LogStatus.ERROR, "To verify " + name + " is clickable with in provided time ",
 //					"An exception occurred waiting for " + name + " to enter text" + e.getMessage());
@@ -121,6 +136,34 @@ public class ScreenBase extends TestBase {
 		touchAction.tap(driver.findElement(elementLocator),x, y).waitAction(2000).release().perform();
 	}
 	
+	public static int convertDate() {
+		String d = getTodayDateofMonth();
+		int date = Integer.parseInt(d);
+		return date;
+	}
+	public static String date() {
+		Format dateFormat = new SimpleDateFormat("EEE, dd/MM/yyyy");
+	      String res = dateFormat.format(new Date());
+	      return  res;
+	}
+	
+	public static String  getTodayNameofTheWeek() {
+		Format dateFormat = new SimpleDateFormat("EEE");
+	      String res = dateFormat.format(new Date());
+	      return res;
+	}
+	
+	public static String  getTodayDateofMonth() {
+		Format dateFormat = new SimpleDateFormat("dd");
+	      String res = dateFormat.format(new Date());
+	      return res;
+	}
+	
+	public static String  getMonthofYear() {
+		Format dateFormat = new SimpleDateFormat("MMM");
+	      String res = dateFormat.format(new Date());
+	    return res;
+	}
 //	public boolean clicked(By locator, String locatorName) throws Throwable {
 //		boolean status = false;
 //		try {

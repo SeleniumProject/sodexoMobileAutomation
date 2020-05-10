@@ -40,18 +40,18 @@ public class HomeScreen_android extends ScreenBase {
 	}
 	
 
-	public static void selectLocation() throws InterruptedException{
+	public static void selectLocation(String locations, String name) throws InterruptedException{
 		String getText11=null;
 		try {
-			Thread.sleep(1000);
-		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.ListView[@content-desc='UITestLocationsList']/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup");
+			Thread.sleep(3000);
+//		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.ListView[@content-desc='UITestLocationsList']/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup");
+		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.TextView[contains(text(),'"+locations+"')]");
 		int count = locationsList.size();
-		for (int i = 1; i < count; i++) {
-			if (i>=1) {
-//				getText11 = locationsList.get(0).getTagName();
-				Thread.sleep(1000);
-				locationsList.get(0).click();
-				//test.log(LogStatus.PASS, "To Verify is User able to click on " + getText11, getText11 + " clicked successfully");
+		System.out.println("Found Number of locations "+ count);
+		for (MobileElement mobileElement : locationsList) {
+			if (mobileElement.getText().trim().contains(locations)) {
+				Thread.sleep(500);
+				mobileElement.click();
 				break;
 			}
 		}
