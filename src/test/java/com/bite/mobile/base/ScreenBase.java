@@ -40,6 +40,16 @@ public class ScreenBase extends TestBase {
 
 		                ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='android.widget.ProgressBar']"))));
 	}
+	
+	public void waitForLoadingNoLongerPresent(long timeout) {
+		
+		new WebDriverWait(driver, timeout).until(
+
+		        ExpectedConditions.not(
+
+		                ExpectedConditions.invisibilityOfElementLocated(By.xpath("//android.widget.TextView[@text='Loading...']"))));
+	}
+	
 
 	public void hideKeyboard() {
 
@@ -54,7 +64,7 @@ public class ScreenBase extends TestBase {
 
 	public void click(By elementLocator, String name) {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(2500);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
@@ -73,8 +83,8 @@ public class ScreenBase extends TestBase {
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
-			IsKeyBoardShown();
-			ele.click();
+           ele.click();
+           ele.clear();
             hideKeyboard();
 			ele.sendKeys(value);
 			test.log(LogStatus.PASS, "To Verify User able to Enter " + name, value + " Text entered successfully");

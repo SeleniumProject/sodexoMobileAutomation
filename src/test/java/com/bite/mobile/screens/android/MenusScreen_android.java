@@ -3,6 +3,7 @@ package com.bite.mobile.screens.android;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import com.bite.mobile.base.ScreenBase;
 import com.thoughtworks.selenium.webdriven.commands.WaitForPageToLoad;
@@ -57,6 +58,9 @@ public class MenusScreen_android extends ScreenBase {
 		}
 		return true;
 	}
+	public static WebElement nomenutextdisplayed() {
+		return driver.findElement(nomenutxt);
+	}
 	public static void selectDate(int day) throws InterruptedException {
 		Thread.sleep(2000);
 		List<MobileElement> days = driver.findElementsByXPath("//*[@class='android.view.ViewGroup' and ./*[@text='"+day+"']]");
@@ -65,21 +69,23 @@ public class MenusScreen_android extends ScreenBase {
 		days.get(0).click();
 	}
 	public static  void selectMenuItem(String menuType) throws InterruptedException {
+		Thread.sleep(13000);
+		List<MobileElement> els4 = driver.findElementsByXPath("//android.widget.TextView[@text='HBO Cafe']");
+		els4.get(0).click();
+		
 		Thread.sleep(3500);
-		List<MobileElement> menuitems = driver.findElementsByXPath("//android.widget.TextView[@text='"+menuType+"']");
-		int count = menuitems.size();
-		if (count>=1) {
-			for (MobileElement mobileElement : menuitems) {
-				System.out.println("Menu Item is : " + mobileElement.getText());
-				if (mobileElement.getText().trim().contains(menuType)) {
-					Thread.sleep(500);
-					LongPressWithText(mobileElement);
-				     break;
-				}
-			}
+//		List<MobileElement> menuitems = driver.findElementsByXPath("//android.widget.TextView[@text='"+menuType+"']");
+//		int count = menuitems.size();
+//		if (count>=1) {
+//			for (MobileElement mobileElement : menuitems) {
+//				System.out.println("Menu Item is : " + mobileElement.getText());
+//				if (mobileElement.getText().trim().contains(menuType)) {
+//					Thread.sleep(500);
+//					LongPressWithText(mobileElement);
+//				     break;
+//				}
+//			}
 		}
-	}
-
 	
 	
 

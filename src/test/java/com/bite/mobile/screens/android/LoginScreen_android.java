@@ -29,7 +29,7 @@ public class LoginScreen_android extends ScreenBase {
 		signintitle = By.xpath("//android.widget.Button[@text='SIGN IN / SIGN UP']");
 		pleasesigninlbl = By.xpath("//*[@text='Please sign in with your Bite account email and password you previously set up.']");
 		emailedittxt = By.xpath("//android.widget.EditText[contains(text(),'mail')]");
-		passwordedittxt = By.xpath("//android.widget.EditText[contains(text(),'Password')]");
+		passwordedittxt = By.xpath("//android.widget.EditText[@text='Password']");
 		signinsignupbtn = By.xpath("//*[@text='SIGN IN / SIGN UP']");
 		forgotpasswordlink = By.xpath("//*[@text='FORGOT PASSWORD']");
 		forgotpasswordlink = By.xpath("//*[@text=concat('By continuing, you', \"'\", 'll be agreeing to our')]");

@@ -41,23 +41,24 @@ public class HomeScreen_android extends ScreenBase {
 	
 
 	public static void selectLocation(String locations, String name) throws InterruptedException{
-		String getText11=null;
+		
 		try {
 			Thread.sleep(3000);
-//		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.ListView[@content-desc='UITestLocationsList']/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup");
-		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.TextView[contains(text(),'"+locations+"')]");
+		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.ListView[@content-desc='UITestLocationsList']/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup");
+//		List<MobileElement> locationsList = driver.findElementsByXPath("//*[contains(text(),'"+locations+"')]");
 		int count = locationsList.size();
-		System.out.println("Found Number of locations "+ count);
-		for (MobileElement mobileElement : locationsList) {
-			if (mobileElement.getText().trim().contains(locations)) {
-				Thread.sleep(500);
-				mobileElement.click();
-				break;
-			}
-		}
+		locationsList.get(0).click();
+//		System.out.println("Found Number of locations "+ count);
+//		for (MobileElement mobileElement : locationsList) {
+//			if (mobileElement.getText().trim().contains(locations)) {
+//				Thread.sleep(500);
+//				mobileElement.click();
+//				break;
+//			}
+//		}
 		} catch (Exception e) {
-			test.log(LogStatus.ERROR, "To verify " + getText11 + " is clickable with in provided time ",
-					"An exception occurred waiting for " + getText11 + " to enter text" + e.getMessage());
+			test.log(LogStatus.ERROR, "To verify " + name + " is clickable with in provided time ",
+					"An exception occurred waiting for " + name + " to enter text" + e.getMessage());
 
 		}
 	}

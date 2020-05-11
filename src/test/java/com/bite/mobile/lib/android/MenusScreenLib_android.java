@@ -31,6 +31,7 @@ public class MenusScreenLib_android extends ScreenBase{
 		
 		LongPressButton(MenusScreen_android.menustab);
 //		waitForElementNoLongerPresent(60);
+//		waitForLoadingNoLongerPresent(60);
 		MenusScreen_android.selectMenuItem(menuType);
 	}
 	
@@ -49,7 +50,7 @@ public class MenusScreenLib_android extends ScreenBase{
 	public void selectDateAndItem(int day, String itemName) {
 		try {
 			Thread.sleep(2000);
-			if (MenusScreen_android.getnomenutext(nomenufortheday)) {
+			if (MenusScreen_android.nomenutextdisplayed().isDisplayed()) {
 				MenusScreen_android.selectDate(day+1);
 			} else {
 				MenusScreen_android.selectDate(day);

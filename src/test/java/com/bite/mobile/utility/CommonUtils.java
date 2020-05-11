@@ -122,27 +122,25 @@ public class CommonUtils {
 		capabilities.setCapability("reportFormat", reportFormat);
 		capabilities.setCapability("testName", testName);
 
-		String path = System.getProperty("user.dir");
-		String otherFolder = path + "\\src\\test\\resources\\app";
-		File appDir = new File(otherFolder);
-		File app = new File(appDir, "com.sodexo.noram.stage.com.apk");
+		// capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BROWSER_NAME);
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, PLATFORM_NAME);
+		// capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,
+		// PLATFORM_VERSION);
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
 //		capabilities.setCapability("resetKeyboard", true);
 //		capabilities.setCapability("unicodeKeyboard", true);
 //		capabilities.setCapability("auto	ceptAlerts", true);
-//		capabilities.setCapability("resetKeyboard", true);
-//		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("auto	ceptAlerts", true);
-		capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-		capabilities.setCapability("skipUnlock", "true");
-		capabilities.setCapability("autoDismissAlerts", true);
-//		capabilities.setCapability("instrumentApp", true);
-		capabilities.setCapability("fullReset", "true");
+//		capabilities.setCapability("autoDismissAlerts", true);
+		// capabilities.setCapability("skipUnlock","true");
+		capabilities.setCapability("noReset", "false");
+//		capabilities.setCapability("fullReset","true");
 		capabilities.setCapability("takesScreenshot", true);
 		capabilities.setCapability("dataReset", true);
+//		capabilities.setCapability("unicodeKeyboard", true);
+//		capabilities.setCapability("resetKeyboard", true);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, BASE_PKG);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
+
 
 	}
 	

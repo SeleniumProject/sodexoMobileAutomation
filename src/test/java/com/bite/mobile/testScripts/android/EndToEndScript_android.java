@@ -56,7 +56,7 @@ public class EndToEndScript_android extends TestBase{
 		}
 	}
 	
-	@Test(priority =1, dataProvider = "login" )
+	@Test(enabled = false,priority =1, dataProvider = "login" )
 	public void Login(String email, String password) {
 		test = extent.startTest("TS03_Bite App: Login to Bite App");
 				
@@ -68,6 +68,14 @@ public class EndToEndScript_android extends TestBase{
 			}		
 	}
 	
+	@Test(priority = 1)
+	public void continueAsGuest() {
+		try {
+			signup.continueAsGuest();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	@Test(priority =2, dataProvider = "menuData" )
 	public void selectingItem(String menuType, String itemName) {
 		test = extent.startTest("TS03_Bite App: Selecting menu and item");

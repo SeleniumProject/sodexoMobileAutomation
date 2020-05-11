@@ -41,6 +41,9 @@ public class CreateanAccountLib_android extends ScreenBase{
 		
 	}
 
+	public void continueAsGuest() {
+		click(CreateAccountScreen_android.guestSignIn, guestSignIn);
+	}
 	public void createAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,
 			String password, String verifyPwd, String monthoption, String yearoption, String genderoption, String phoneoption) throws Throwable {
 		try {

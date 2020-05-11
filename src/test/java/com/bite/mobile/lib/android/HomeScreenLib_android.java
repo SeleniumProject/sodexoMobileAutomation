@@ -33,13 +33,14 @@ public class HomeScreenLib_android extends ScreenBase{
 	 */
 	public void launchApp() throws Throwable {
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 			test.log(LogStatus.PASS, "To Verify is User able to Tap on " + LetsStart, LetsStart + " Tapped successfully");
 			Tap(639, 2230, LetsStart);
-			Thread.sleep(1000);
+			Thread.sleep(200);
 			Tap(665, 2434, LetsStart);
+			Thread.sleep(2000);
 			click(HomeScreen_android.allowbtn, allowbtn);
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			click(HomeScreen_android.okbtn, okbtn);
 			
 		} catch(Exception e) {
@@ -47,9 +48,10 @@ public class HomeScreenLib_android extends ScreenBase{
 		}
 
 	}
-	public void searchAndSelectLocation(String location) {
+	public void searchAndSelectLocation(String location) throws InterruptedException {
 		
 		Type(HomeScreen_android.searchlocationnametext, location, searchLocationtxt);
+		Thread.sleep(2000);
 		click(HomeScreen_android.searchButton, searchbtn);
 		try {
 			test.log(LogStatus.PASS, "To Verify is User able to click on on " + locationList, location + " Tapped successfully");

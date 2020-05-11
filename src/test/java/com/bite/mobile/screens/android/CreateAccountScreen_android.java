@@ -55,7 +55,7 @@ public class CreateAccountScreen_android extends ScreenBase {
 		createAnaccountlbl = By.xpath("//android.widget.TextView[@text='Create an Account']");
 		emailtxt = By.xpath("//android.widget.EditText[@content-desc='UITestEnterEmail']");
 		nextbtn = By.xpath("//android.widget.Button[@content-desc='UITestNext']");
-		guestSignIn = By.xpath("//android.widget.Button[@content-desc='UITestGuestSignIn']");
+		guestSignIn = By.xpath("//*[@content-desc='UITestGuestSignIn']");
 		nextletscreateanaccountlbl = By.xpath("//android.widget.TextView[@text='Next, let’s create an account:']");
 		editboxes = By.xpath("//android.widget.EditText");
 		firstnametxt = By.xpath("//android.widget.EditText[@content-desc='UITestFirstName']");
