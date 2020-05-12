@@ -11,8 +11,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class HomeScreen_android extends ScreenBase {
-	public HomeScreen_android(AppiumDriver<MobileElement> driver) {
+public class Home_android extends ScreenBase {
+	public Home_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 60, TimeUnit.SECONDS), this);
 

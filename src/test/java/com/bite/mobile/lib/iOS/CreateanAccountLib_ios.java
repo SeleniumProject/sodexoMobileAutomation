@@ -2,7 +2,7 @@ package com.bite.mobile.lib.iOS;
 
 import org.testng.Assert;
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.ios.CreateAccountScreen_iOS;
+import com.bite.mobile.screens.ios.CreateAccount_iOS;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
@@ -38,35 +38,35 @@ public class CreateanAccountLib_ios extends ScreenBase{
 			String password, String verifyPwd, String monthoption, String yearoption, String genderoption, String phoneoption) throws Throwable {
 		try {
 			   Thread.sleep(2500);
-			String actualText = getText(CreateAccountScreen_iOS.createAnaccountlbl);
+			String actualText = getText(CreateAccount_iOS.createAnaccountlbl);
 			System.out.println(actualText +" Create Account lable");
 		     Assert.assertEquals(actualText, createAnAccountlbl);
-		     Type(CreateAccountScreen_iOS.emailtxt, email, emailtxt);
-		     click(CreateAccountScreen_iOS.nextbtn, nextbtn);
+		     Type(CreateAccount_iOS.emailtxt, email, emailtxt);
+		     click(CreateAccount_iOS.nextbtn, nextbtn);
 		     Thread.sleep(2500);
-		     String text = getText(CreateAccountScreen_iOS.nextletscreateanaccountlbl);
+		     String text = getText(CreateAccount_iOS.nextletscreateanaccountlbl);
 		     System.out.println(text +"next lets create ");
 		     Assert.assertEquals(text, nextletscreateaccountlbl);
-		     Type(CreateAccountScreen_iOS.firstnametxt, firstName, firstnametxt);
-		     Type(CreateAccountScreen_iOS.lastnametxt, lastName, lastnametxt);
-		     Type(CreateAccountScreen_iOS.passwordtxt, password, passwordtx);
-		     Type(CreateAccountScreen_iOS.verifypasswordtxt, verifyPwd, verifypassword);
-		     click(CreateAccountScreen_iOS.termsconditionchkbox, termsconditionchkbox);
-		     click(CreateAccountScreen_iOS.signupbtn, signupbtn);
+		     Type(CreateAccount_iOS.firstnametxt, firstName, firstnametxt);
+		     Type(CreateAccount_iOS.lastnametxt, lastName, lastnametxt);
+		     Type(CreateAccount_iOS.passwordtxt, password, passwordtx);
+		     Type(CreateAccount_iOS.verifypasswordtxt, verifyPwd, verifypassword);
+		     click(CreateAccount_iOS.termsconditionchkbox, termsconditionchkbox);
+		     click(CreateAccount_iOS.signupbtn, signupbtn);
 		     Thread.sleep(2500);
-		     LongPressButton(CreateAccountScreen_iOS.Monthbtn);
+		     LongPressButton(CreateAccount_iOS.Monthbtn);
 		     
-		     CreateAccountScreen_iOS.selectValueFromPopUp(monthoption, month);
+		     CreateAccount_iOS.selectValueFromPopUp(monthoption, month);
 		    // LongPressButton(CreateAccountScreen.yearbtn);
 		     Tap(799, 907, year);
-		     CreateAccountScreen_iOS.selectValueFromPopUp(yearoption, year);
+		     CreateAccount_iOS.selectValueFromPopUp(yearoption, year);
 		     Tap(248, 1113, gender);
 //		     LongPressButton(CreateAccountScreen.genderbtn);
-		     CreateAccountScreen_iOS.selectValueFromPopUp(genderoption, gender);
+		     CreateAccount_iOS.selectValueFromPopUp(genderoption, gender);
 		     Tap(154, 1290, phonenumber);
-		     Type(CreateAccountScreen_iOS.mobilenotxt, "+1 301-987-4772", phonenumber);
-		     click(CreateAccountScreen_iOS.alldonebtn, allDonebtn);
-		     click(CreateAccountScreen_iOS.notnowlink, notnowlink);
+		     Type(CreateAccount_iOS.mobilenotxt, "+1 301-987-4772", phonenumber);
+		     click(CreateAccount_iOS.alldonebtn, allDonebtn);
+		     click(CreateAccount_iOS.notnowlink, notnowlink);
 		} catch(Exception e) {
 			e.printStackTrace();
 			
@@ -75,7 +75,7 @@ public class CreateanAccountLib_ios extends ScreenBase{
 	
 	}
 	public String SetEmail() {
-		String email = CreateAccountScreen_iOS.RandomEmail();
+		String email = CreateAccount_iOS.RandomEmail();
 		return email;
 	}
 	

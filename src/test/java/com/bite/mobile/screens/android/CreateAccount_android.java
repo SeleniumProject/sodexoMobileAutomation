@@ -1,4 +1,4 @@
-package com.bite.mobile.screens.ios;
+package com.bite.mobile.screens.android;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -16,13 +16,13 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
  * @author Ramesh Kudikala
  *
  */
-public class CreateAccountScreen_iOS extends ScreenBase {
+public class CreateAccount_android extends ScreenBase {
 	
 	/**
 	 * Constructor of Create An Account Screen.
 	 * @param driver
 	 */
-	public CreateAccountScreen_iOS(AppiumDriver<MobileElement> driver) {
+	public CreateAccount_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 60, TimeUnit.SECONDS), this);
 	}
@@ -52,25 +52,25 @@ public class CreateAccountScreen_iOS extends ScreenBase {
 	
 	static {
 		
-		createAnaccountlbl = By.xpath("//[@text='Create an Account']");
-		emailtxt = By.xpath("//*[@placeholder='Email']");
-		nextbtn = By.xpath("//*[@name='UITestNext']");
-		guestSignIn = By.xpath("//[@name='UITestGuestSignIn']");
-		nextletscreateanaccountlbl = By.xpath("/[@text='Next, let’s create an account:']");
+		createAnaccountlbl = By.xpath("//android.widget.TextView[@text='Create an Account']");
+		emailtxt = By.xpath("//android.widget.EditText[@content-desc='UITestEnterEmail']");
+		nextbtn = By.xpath("//android.widget.Button[@content-desc='UITestNext']");
+		guestSignIn = By.xpath("//*[@content-desc='UITestGuestSignIn']");
+		nextletscreateanaccountlbl = By.xpath("//android.widget.TextView[@text='Next, let’s create an account:']");
 		editboxes = By.xpath("//android.widget.EditText");
-		firstnametxt = By.xpath("//*[@placeholder='First Name']");
-		lastnametxt = By.xpath("//*[@placeholder='Last Name']");
-		passwordtxt = By.xpath("//*[@placeholder='Password']");
-		verifypasswordtxt = By.xpath("//*[@placeholder='Verify Password']");
-		termsconditionchkbox = By.xpath("//*[@name='UITestAcceptTerms']");
-		privacypolicylink = By.xpath("//[@text='privacy policy']");
-		signupbtn = By.xpath("//*[@label='SIGN UP']");
+		firstnametxt = By.xpath("//android.widget.EditText[@content-desc='UITestFirstName']");
+		lastnametxt = By.xpath("//android.widget.EditText[@content-desc='UITestLastName']");
+		passwordtxt = By.xpath("//android.widget.EditText[@content-desc='UITestPassword']");
+		verifypasswordtxt = By.xpath("//android.widget.EditText[@content-desc='UITestVerification']");
+		termsconditionchkbox = By.xpath("//android.widget.Button[@content-desc='UITestAcceptTerms']");
+		privacypolicylink = By.xpath("//android.widget.Button[@text='privacy policy']");
+		signupbtn = By.xpath("//android.widget.Button[@content-desc='UITestSignUp']");
 		
-		Monthbtn = By.xpath("//*[@placeholder='Month']");
-		yearbtn = By.xpath("//*[@placeholder='Year']");
-		genderbtn = By.xpath("//*[@name='UITestGenderPicker']");
-		mobilenotxt = By.xpath("//[@text='Mobile Number']");
-		alldonebtn = By.xpath("//*[@label='ALL DONE!']");
+		Monthbtn = By.xpath("//android.widget.Button[@text='Month']");
+		yearbtn = By.xpath("//android.widget.Button[@text='Year']");
+		genderbtn = By.xpath("//android.widget.Button[@text='Gender']");
+		mobilenotxt = By.xpath("//android.widget.EditText[@text='Mobile Number']");
+		alldonebtn = By.xpath("//android.widget.Button[@content-desc='UITestDoneButton']");
 		
 		popupoptions = By.xpath("//android.widget.TextView[@resource-id='android:id/text1']");
 		notnowlink = By.xpath("//android.widget.Button[@text='Not now']");
@@ -91,9 +91,9 @@ public class CreateAccountScreen_iOS extends ScreenBase {
 			int count = options.size();
 			if (count>=1) {
 				for (MobileElement mobileElement : options) {
-					Thread.sleep(500);
+//					Thread.sleep(500);
 					if (mobileElement.getText().equals(value)) {
-						TA.tap(mobileElement).waitAction(2500).release().perform();
+						TA.tap(mobileElement).release().perform();
 						Thread.sleep(500);
 						test.log(LogStatus.PASS, "To Verify is User able to click on " + name, mobileElement.getText() + " clicked successfully");
 						break;

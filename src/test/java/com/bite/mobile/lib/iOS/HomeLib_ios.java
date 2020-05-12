@@ -1,13 +1,13 @@
 package com.bite.mobile.lib.iOS;
 
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.android.HomeScreen_android;
-import com.bite.mobile.screens.ios.HomeScreen_iOS;
+import com.bite.mobile.screens.android.Home_android;
+import com.bite.mobile.screens.ios.Home_iOS;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class HomeScreenLib_ios extends ScreenBase{
+public class HomeLib_ios extends ScreenBase{
 
 	public String LetsStartbtn = "Lets Start ";
 	public String LetsStart = "Lets Start ";
@@ -17,7 +17,7 @@ public class HomeScreenLib_ios extends ScreenBase{
 	public String searchbtn = "Search Icon";
 	public String locationList = "Location List";
 	
-	public HomeScreenLib_ios(AppiumDriver<MobileElement> driver) {
+	public HomeLib_ios(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		
 	}
@@ -33,14 +33,14 @@ public class HomeScreenLib_ios extends ScreenBase{
 			//Tap(665, 2434, LetsStart);
 //			click(HomeScreen_iOS.allowbtn, allowbtn);
 			Thread.sleep(1000);
-			click(HomeScreen_iOS.okbtn, okbtn);
+			click(Home_iOS.okbtn, okbtn);
 			Thread.sleep(1000);
-			Type(HomeScreen_iOS.searchlocationnametext, location, searchLocationtxt);
+			Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
 			Thread.sleep(2000);
-			LongPressButton(HomeScreen_iOS.searchButton);
+			LongPressButton(Home_iOS.searchButton);
 //			click(HomeScreen_iOS.searchButton, searchbtn);
 			Thread.sleep(3500);
-			LongPressbuttonWithCooridinates(HomeScreen_iOS.locationList, 20, 292);
+			LongPressbuttonWithCooridinates(Home_iOS.locationList, 20, 292);
 //			HomeScreen_iOS.selectLocation();
 		} catch(Exception e) {
 			e.printStackTrace();

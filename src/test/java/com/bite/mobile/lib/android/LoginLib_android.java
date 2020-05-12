@@ -1,11 +1,11 @@
 package com.bite.mobile.lib.android;
 
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.android.LoginScreen_android;
+import com.bite.mobile.screens.android.Login_android;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class LoginScreenLib_android extends ScreenBase{
+public class LoginLib_android extends ScreenBase{
 
 	/**
 	 * author : Ramesh K
@@ -16,7 +16,7 @@ public class LoginScreenLib_android extends ScreenBase{
 	public String passwordtxt = "Password";
 	public String signinbtn = "SignIn";
 	
-	public LoginScreenLib_android(AppiumDriver<MobileElement> driver) {
+	public LoginLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 
 	}
@@ -25,8 +25,8 @@ public class LoginScreenLib_android extends ScreenBase{
 		try {
 			Thread.sleep(2000);
               //Type(LoginScreen_android.emailedittxt, email, emailtxt);
-              Type(LoginScreen_android.passwordedittxt, password, passwordtxt);
-              click(LoginScreen_android.signinsignupbtn, signinbtn);
+              Type(Login_android.passwordedittxt, password, passwordtxt);
+              click(Login_android.signinsignupbtn, signinbtn);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

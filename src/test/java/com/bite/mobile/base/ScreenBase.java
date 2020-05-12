@@ -1,10 +1,13 @@
 package com.bite.mobile.base;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,32 +34,33 @@ public class ScreenBase extends TestBase {
 		ScreenBase.driver = driver;
 
 	}
-	
+
 	public void waitForElementNoLongerPresent(long timeout) {
-		
+
 		new WebDriverWait(driver, timeout).until(
 
-		        ExpectedConditions.not(
+				ExpectedConditions.not(
 
-		                ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='android.widget.ProgressBar']"))));
+						ExpectedConditions
+								.presenceOfElementLocated(By.xpath("//*[@class='android.widget.ProgressBar']"))));
 	}
-	
+
 	public void waitForLoadingNoLongerPresent(long timeout) {
-		
+
 		new WebDriverWait(driver, timeout).until(
 
-		        ExpectedConditions.not(
+				ExpectedConditions.not(
 
-		                ExpectedConditions.invisibilityOfElementLocated(By.xpath("//android.widget.TextView[@text='Loading...']"))));
+						ExpectedConditions.invisibilityOfElementLocated(
+								By.xpath("//android.widget.TextView[@text='Loading...']"))));
 	}
-	
 
 	public void hideKeyboard() {
 
 		driver.hideKeyboard();
 
 	}
-	
+
 	public void IsKeyBoardShown() {
 		driver.getKeyboard();
 
@@ -83,9 +87,9 @@ public class ScreenBase extends TestBase {
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
-           ele.click();
-           ele.clear();
-            hideKeyboard();
+			ele.click();
+			ele.clear();
+			hideKeyboard();
 			ele.sendKeys(value);
 			test.log(LogStatus.PASS, "To Verify User able to Enter " + name, value + " Text entered successfully");
 
@@ -96,10 +100,41 @@ public class ScreenBase extends TestBase {
 
 	}
 
+	/*
+	 * don't forget that it's "natural scroll" where fromY is the point where you
+	 * press the and toY where you release it
+	 */
+	public static void scroll(int fromX, int fromY, int toX, int toY) {
+		TouchAction touchAction = new TouchAction(driver);
+		touchAction.longPress(fromX, fromY).moveTo(toX, toY).release().perform();
+	}
+
+	public  void scrollDown() {
+		// if pressX was zero it didn't work for me
+		int pressX = driver.manage().window().getSize().width / 2;
+		// 4/5 of the screen as the bottom finger-press point
+		int bottomY = driver.manage().window().getSize().height * 4 / 5;
+		// just non zero point, as it didn't scroll to zero normally
+		int topY = driver.manage().window().getSize().height / 8;
+		// scroll with TouchAction by itself
+		scroll(pressX, bottomY, pressX, topY);
+	}
+
 	public void TypeWithCoordinates(int x, int y, String value, String name) {
 
 	}
 
+	public static void ScrollDown(By by) {
+		MobileElement abc = driver.findElement(by);
+		int x = abc.getLocation().getX();
+	    int y = abc.getLocation().getY();
+         System.out.println("X Value "+ x);
+         System.out.println("Y Value "+ y);
+         System.out.println("X plus Value "+ x+90);
+	    TouchAction action = new TouchAction(driver);
+	    action.press(x,y).moveTo(x+90,y).release().perform(); 
+	}
+	
 	public void keyBoardSendKeys(String value) {
 		driver.switchTo().activeElement();
 		driver.getKeyboard().sendKeys(value);
@@ -115,6 +150,11 @@ public class ScreenBase extends TestBase {
 		}
 	}
 
+	public void TapElement(MobileElement me) {
+		
+		TouchAction touchAction = new TouchAction(driver);
+		touchAction.tap(me).waitAction(2500).release().perform();
+	}
 	public String getText(By elementLocator) {
 		return driver.findElement(elementLocator).getText();
 	}
@@ -125,54 +165,62 @@ public class ScreenBase extends TestBase {
 
 	public static void LongPressButton(By elementLocator) throws InterruptedException {
 		Thread.sleep(2500);
-		TouchAction touchAction=new TouchAction(driver);
-		touchAction.longPress(driver.findElement(elementLocator),2500).release().perform();
-		}
-	
-	public static void LongPressWithText(MobileElement element) {
-		TouchAction touchAction=new TouchAction(driver);
-		touchAction.longPress(element,3000).release().perform();
+		TouchAction touchAction = new TouchAction(driver);
+		touchAction.longPress(driver.findElement(elementLocator), 2500).release().perform();
 	}
-	
+
+	public void swipeTo(String action) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		HashMap<String, String> scrollObject = new HashMap<String, String>();
+		scrollObject.put("direction", action);
+		js.executeScript("mobile: scroll", scrollObject);
+	}
+
+	public static void LongPressWithText(MobileElement element) {
+		TouchAction touchAction = new TouchAction(driver);
+		touchAction.longPress(element, 3000).release().perform();
+	}
+
 	public static void Press(By elementLocator) throws InterruptedException {
 		Thread.sleep(2000);
-		TouchAction touchAction=new TouchAction(driver);
+		TouchAction touchAction = new TouchAction(driver);
 		touchAction.press(driver.findElement(elementLocator)).waitAction(1500).release().perform();
-		}
-	
+	}
+
 	public static void LongPressbuttonWithCooridinates(By elementLocator, int x, int y) throws InterruptedException {
 		Thread.sleep(2000);
-		TouchAction touchAction=new TouchAction(driver);
-		touchAction.tap(driver.findElement(elementLocator),x, y).waitAction(2000).release().perform();
+		TouchAction touchAction = new TouchAction(driver);
+		touchAction.tap(driver.findElement(elementLocator), x, y).waitAction(2000).release().perform();
 	}
-	
+
 	public static int convertDate() {
 		String d = getTodayDateofMonth();
 		int date = Integer.parseInt(d);
 		return date;
 	}
+
 	public static String date() {
 		Format dateFormat = new SimpleDateFormat("EEE, dd/MM/yyyy");
-	      String res = dateFormat.format(new Date());
-	      return  res;
+		String res = dateFormat.format(new Date());
+		return res;
 	}
-	
-	public static String  getTodayNameofTheWeek() {
+
+	public static String getTodayNameofTheWeek() {
 		Format dateFormat = new SimpleDateFormat("EEE");
-	      String res = dateFormat.format(new Date());
-	      return res;
+		String res = dateFormat.format(new Date());
+		return res;
 	}
-	
-	public static String  getTodayDateofMonth() {
+
+	public static String getTodayDateofMonth() {
 		Format dateFormat = new SimpleDateFormat("dd");
-	      String res = dateFormat.format(new Date());
-	      return res;
+		String res = dateFormat.format(new Date());
+		return res;
 	}
-	
-	public static String  getMonthofYear() {
+
+	public static String getMonthofYear() {
 		Format dateFormat = new SimpleDateFormat("MMM");
-	      String res = dateFormat.format(new Date());
-	    return res;
+		String res = dateFormat.format(new Date());
+		return res;
 	}
 //	public boolean clicked(By locator, String locatorName) throws Throwable {
 //		boolean status = false;

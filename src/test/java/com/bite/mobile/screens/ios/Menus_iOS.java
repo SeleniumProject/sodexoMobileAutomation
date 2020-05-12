@@ -9,8 +9,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class MenusScreen_iOS extends ScreenBase {
-	public MenusScreen_iOS(AppiumDriver<MobileElement> driver) {
+public class Menus_iOS extends ScreenBase {
+	public Menus_iOS(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
 

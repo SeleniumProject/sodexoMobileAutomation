@@ -1,11 +1,11 @@
 package com.bite.mobile.lib.android;
 import org.testng.Assert;
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.android.CreateAccountScreen_android;
+import com.bite.mobile.screens.android.CreateAccount_android;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class CreateanAccountLib_android extends ScreenBase{
+public class CreateAccountLib_android extends ScreenBase{
 
 	/**
 	 * author : Ramesh K
@@ -36,47 +36,47 @@ public class CreateanAccountLib_android extends ScreenBase{
 	 * Constructor of CreateAccount Library
 	 * @param driver
 	 */
-	public CreateanAccountLib_android(AppiumDriver<MobileElement> driver) {
+	public CreateAccountLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		
 	}
 
 	public void continueAsGuest() {
-		click(CreateAccountScreen_android.guestSignIn, guestSignIn);
+		click(CreateAccount_android.guestSignIn, guestSignIn);
 	}
 	public void createAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,
 			String password, String verifyPwd, String monthoption, String yearoption, String genderoption, String phoneoption) throws Throwable {
 		try {
 			   Thread.sleep(2500);
-			 String actualText = getText(CreateAccountScreen_android.createAnaccountlbl);
+			 String actualText = getText(CreateAccount_android.createAnaccountlbl);
 			 System.out.println(actualText +" Create Account lable");
 		     Assert.assertEquals(actualText, createAnAccountlbl);
-		     Type(CreateAccountScreen_android.emailtxt, email, emailtxt);
-		     click(CreateAccountScreen_android.nextbtn, nextbtn);
+		     Type(CreateAccount_android.emailtxt, email, emailtxt);
+		     click(CreateAccount_android.nextbtn, nextbtn);
 		     Thread.sleep(2500);
-		     String text = getText(CreateAccountScreen_android.nextletscreateanaccountlbl);
+		     String text = getText(CreateAccount_android.nextletscreateanaccountlbl);
 		     System.out.println(text +"next lets create ");
 		     Assert.assertEquals(text, nextletscreateaccountlbl);
-		     Type(CreateAccountScreen_android.firstnametxt, firstName, firstnametxt);
-		     Type(CreateAccountScreen_android.lastnametxt, lastName, lastnametxt);
-		     Type(CreateAccountScreen_android.passwordtxt, password, passwordtx);
-		     Type(CreateAccountScreen_android.verifypasswordtxt, verifyPwd, verifypassword);
-		     click(CreateAccountScreen_android.termsconditionchkbox, termsconditionchkbox);
-		     click(CreateAccountScreen_android.signupbtn, signupbtn);
+		     Type(CreateAccount_android.firstnametxt, firstName, firstnametxt);
+		     Type(CreateAccount_android.lastnametxt, lastName, lastnametxt);
+		     Type(CreateAccount_android.passwordtxt, password, passwordtx);
+		     Type(CreateAccount_android.verifypasswordtxt, verifyPwd, verifypassword);
+		     click(CreateAccount_android.termsconditionchkbox, termsconditionchkbox);
+		     click(CreateAccount_android.signupbtn, signupbtn);
 		     Thread.sleep(2500);
-		     LongPressButton(CreateAccountScreen_android.Monthbtn);
+		     LongPressButton(CreateAccount_android.Monthbtn);
 		     
-		     CreateAccountScreen_android.selectValueFromPopUp(monthoption, month);
+		     CreateAccount_android.selectValueFromPopUp(monthoption, month);
 		    // LongPressButton(CreateAccountScreen.yearbtn);
 		     Tap(799, 907, year);
-		     CreateAccountScreen_android.selectValueFromPopUp(yearoption, year);
+		     CreateAccount_android.selectValueFromPopUp(yearoption, year);
 		     Tap(248, 1113, gender);
 //		     LongPressButton(CreateAccountScreen.genderbtn);
-		     CreateAccountScreen_android.selectValueFromPopUp(genderoption, gender);
+		     CreateAccount_android.selectValueFromPopUp(genderoption, gender);
 		     Tap(154, 1290, phonenumber);
-		     Type(CreateAccountScreen_android.mobilenotxt, "+1 301-987-4772", phonenumber);
-		     click(CreateAccountScreen_android.alldonebtn, allDonebtn);
-		     click(CreateAccountScreen_android.notnowlink, notnowlink);
+		     Type(CreateAccount_android.mobilenotxt, "+1 301-987-4772", phonenumber);
+		     click(CreateAccount_android.alldonebtn, allDonebtn);
+		     click(CreateAccount_android.notnowlink, notnowlink);
 		} catch(Exception e) {
 			e.printStackTrace();
 			
@@ -86,11 +86,11 @@ public class CreateanAccountLib_android extends ScreenBase{
 	}
 	
 	public void enterEmailPressNext(String email) {
-	     Type(CreateAccountScreen_android.emailtxt, email, emailtxt);
-	     click(CreateAccountScreen_android.nextbtn, nextbtn);
+	     Type(CreateAccount_android.emailtxt, email, emailtxt);
+	     click(CreateAccount_android.nextbtn, nextbtn);
 	}
 	public String setEmail() {
-		String email = CreateAccountScreen_android.RandomEmail();
+		String email = CreateAccount_android.RandomEmail();
 		return email;
 	}
 	

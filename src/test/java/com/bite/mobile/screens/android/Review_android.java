@@ -8,8 +8,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class ReviewScreen_android extends ScreenBase {
-	public ReviewScreen_android(AppiumDriver<MobileElement> driver) {
+public class Review_android extends ScreenBase {
+	public Review_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
 

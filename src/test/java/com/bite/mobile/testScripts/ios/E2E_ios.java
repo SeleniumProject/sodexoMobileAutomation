@@ -5,30 +5,30 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.bite.mobile.base.TestBase;
-import com.bite.mobile.lib.android.CreateanAccountLib_android;
-import com.bite.mobile.lib.android.HomeScreenLib_android;
-import com.bite.mobile.lib.android.LoginScreenLib_android;
-import com.bite.mobile.lib.android.MenusScreenLib_android;
+import com.bite.mobile.lib.android.CreateAccountLib_android;
+import com.bite.mobile.lib.android.HomeLib_android;
+import com.bite.mobile.lib.android.LoginLib_android;
+import com.bite.mobile.lib.android.MenusLib_android;
 import com.bite.mobile.lib.iOS.CreateanAccountLib_ios;
-import com.bite.mobile.lib.iOS.HomeScreenLib_ios;
-import com.bite.mobile.lib.iOS.LoginScreenLib_ios;
-import com.bite.mobile.lib.iOS.MenusScreenLib_ios;
+import com.bite.mobile.lib.iOS.HomeLib_ios;
+import com.bite.mobile.lib.iOS.LoginLib_ios;
+import com.bite.mobile.lib.iOS.MenusLib_ios;
 import com.bite.mobile.utility.TestUtil;
 
-public class EndToEndScript_ios extends TestBase{
+public class E2E_ios extends TestBase{
 	
 	
-	HomeScreenLib_ios home;
-	LoginScreenLib_ios login;
+	HomeLib_ios home;
+	LoginLib_ios login;
 	CreateanAccountLib_ios signup;
-	MenusScreenLib_ios menus;
+	MenusLib_ios menus;
 	@BeforeTest
 	public void init(){
 	
-	   home = new HomeScreenLib_ios(driver);
-	   login = new LoginScreenLib_ios(driver);
+	   home = new HomeLib_ios(driver);
+	   login = new LoginLib_ios(driver);
 	   signup = new CreateanAccountLib_ios(driver);
-	   menus = new MenusScreenLib_ios(driver);
+	   menus = new MenusLib_ios(driver);
 	}
 	
 	

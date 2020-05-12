@@ -6,14 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import com.bite.mobile.base.ScreenBase;
-import com.thoughtworks.selenium.webdriven.commands.WaitForPageToLoad;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class MenusScreen_android extends ScreenBase {
-	public MenusScreen_android(AppiumDriver<MobileElement> driver) {
+public class Menus_android extends ScreenBase {
+	public Menus_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
 
@@ -30,6 +29,10 @@ public class MenusScreen_android extends ScreenBase {
 	public static By item;
 	public static By reviewbtn;
 	public static By nomenutxt;
+	public static By letsorder;
+	public static By orderItems;
+	public static By addtomyorder;
+	public static By revieworder;
     
 	static String  getDay = getTodayNameofTheWeek();
 	
@@ -48,9 +51,31 @@ public class MenusScreen_android extends ScreenBase {
 		item = By.xpath("//android.widget.TextView");
 		reviewbtn = By.xpath("//android.widget.Button[@text='REVIEW']");
 		nomenutxt = By.xpath("//android.widget.TextView[@text='No menu for this day']");
+		letsorder = By.xpath("android.widget.Button");
+		orderItems = By.xpath("android.widget.TextView");
+		addtomyorder = By.xpath("//android.widget.Button[@text='ADD TO MY ORDER']");
+		revieworder = By.xpath("//android.widget.Button[@text='REVIEW ORDER']");
 
 	}
 	
+	public static void clickAddToMyOrder() {
+		driver.findElement(addtomyorder).click();
+	}
+	public static void selectItemFromOrders(String item) throws InterruptedException {
+		Thread.sleep(2000);
+		List<MobileElement> ele = driver.findElementsByXPath("//android.widget.TextView[@text='"+item+"']");
+		ele.get(0).click();
+//		
+//		for (MobileElement mobileElement : ele) {
+//			Thread.sleep(500);
+//			if (mobileElement.getText().trim().contains(item)) {
+//				TouchAction ac = new TouchAction(driver);
+//				ac.press(mobileElement).release().perform();
+//				break;
+//			}
+//		}
+		
+	}
 	public static boolean getnomenutext(String value) {
 		String text = driver.findElement(nomenutxt).getText();
 		if (text.contains(value)) {
@@ -68,9 +93,16 @@ public class MenusScreen_android extends ScreenBase {
 		System.out.println(days);
 		days.get(0).click();
 	}
+	
+	public static void clickOnReviewOrder() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(revieworder).click();
+	}
+	
+
 	public static  void selectMenuItem(String menuType) throws InterruptedException {
-		Thread.sleep(13000);
-		List<MobileElement> els4 = driver.findElementsByXPath("//android.widget.TextView[@text='HBO Cafe']");
+		Thread.sleep(10000);
+		List<MobileElement> els4 = driver.findElementsByXPath("//android.widget.TextView[@text='"+menuType+"']");
 		els4.get(0).click();
 		
 		Thread.sleep(3500);

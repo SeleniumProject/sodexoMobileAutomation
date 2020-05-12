@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.screens.android.LoginScreen_android;
-import com.bite.mobile.screens.android.MenusScreen_android;
-import com.bite.mobile.screens.android.ReviewScreen_android;
+import com.bite.mobile.screens.android.Login_android;
+import com.bite.mobile.screens.android.Menus_android;
+import com.bite.mobile.screens.android.Review_android;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class ReviewScreenLib_android extends ScreenBase{
+public class ReviewLib_android extends ScreenBase{
 
 	/**
 	 * author : Ramesh K
@@ -30,22 +30,22 @@ public class ReviewScreenLib_android extends ScreenBase{
 	public String backfromreceipedetails ="Back Arrow";
 	public String backfromdateitem ="Back Arrow";
 	
-	public ReviewScreenLib_android(AppiumDriver<MobileElement> driver) {
+	public ReviewLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 
 	}
 
 	public void fillReview(String comment) throws InterruptedException {
 		Thread.sleep(2000);
-		Type(ReviewScreen_android.commentstxt, comment, commentstxt);
+		Type(Review_android.commentstxt, comment, commentstxt);
 		Thread.sleep(2000);
-		click(ReviewScreen_android.submitbtn, submitbtn);
+		click(Review_android.submitbtn, submitbtn);
 	}
 
 	public void backToOrderMenu() {
-		click(ReviewScreen_android.backbtn, submitbtn);
-		click(ReviewScreen_android.backbntn1, backfromreceipedetails);
-		click(ReviewScreen_android.backbntn2, backfromdateitem);
+		click(Review_android.backbtn, submitbtn);
+		click(Review_android.backbntn1, backfromreceipedetails);
+		click(Review_android.backbntn2, backfromdateitem);
 		
 	}
 }
