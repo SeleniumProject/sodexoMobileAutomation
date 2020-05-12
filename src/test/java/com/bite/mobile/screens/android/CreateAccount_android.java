@@ -24,7 +24,7 @@ public class CreateAccount_android extends ScreenBase {
 	 */
 	public CreateAccount_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 60, TimeUnit.SECONDS), this);
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 	}
 	
 	public static By createAnaccountlbl;
@@ -85,13 +85,12 @@ public class CreateAccount_android extends ScreenBase {
 
 	public static void selectValueFromPopUp(String value, String name) {
 		try {
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			TouchAction TA = new TouchAction(driver);
 			List<MobileElement> options = driver.findElements(popupoptions);
 			int count = options.size();
 			if (count>=1) {
 				for (MobileElement mobileElement : options) {
-//					Thread.sleep(500);
 					if (mobileElement.getText().equals(value)) {
 						TA.tap(mobileElement).release().perform();
 						Thread.sleep(500);

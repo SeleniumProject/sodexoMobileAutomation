@@ -9,7 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import com.bite.mobile.utility.AppiumServer;
 import com.bite.mobile.utility.CommonUtils;
@@ -41,6 +43,12 @@ public class TestBase {
 
 	}
 	
+	public void logclick(String value) {
+		test.log(LogStatus.PASS, "To Verify is User able to click on " + value, value + " clicked successfully");
+	}
+	public void logtype(String value) {
+		
+	}
 	@BeforeSuite
 	public void setUp() throws IOException{
 		
@@ -61,6 +69,14 @@ public class TestBase {
 				driver = CommonUtils.getIOSDriver();
 			}
 		}
+	}
+	
+	@AfterTest
+	public void endSession() {
+		extent.endTest(test);
+		extent.flush();
+		extent.close();
+		System.out.println("Ending Script....");
 	}
 	
 	@AfterSuite

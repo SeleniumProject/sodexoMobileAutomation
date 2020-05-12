@@ -26,7 +26,7 @@ public class OrderLib_android extends ScreenBase{
 	}
 
 	public void clickLogin() throws InterruptedException {
-		Thread.sleep(3000);
+		waitforPageLoad(5);
 		click(Order_android.loginbtn, loginbtn);
 	}
 	
@@ -35,25 +35,25 @@ public class OrderLib_android extends ScreenBase{
 	}
 	
 	public void SwipDown() throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		ScrollDown(Order_android.enterspecialinstructiontxt);
 	}
 	
 	public void enterInstructionHere(String value) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		Type(Order_android.enterspecialinstructiontxt, value, enterspecialinstructiontxt);
 	}
 	
 	public void placeOrder() throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		LongPressButton(Order_android.placeorderbtn);
 	}
 	
 	public void AddPaymentMethod() throws InterruptedException {
-		Thread.sleep(2500);
+		waitforPageLoad(5);
 		TouchAction ac = new TouchAction(driver);
 		ac.press(Order_android.addPaymentMethod()).waitAction(3500).release().perform();
-		Thread.sleep(2500);
+		waitforPageLoad(5);
 	}
 	
 }

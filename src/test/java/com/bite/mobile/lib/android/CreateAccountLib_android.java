@@ -47,13 +47,13 @@ public class CreateAccountLib_android extends ScreenBase{
 	public void createAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,
 			String password, String verifyPwd, String monthoption, String yearoption, String genderoption, String phoneoption) throws Throwable {
 		try {
-			   Thread.sleep(2500);
+			waitforPageLoad(5);
 			 String actualText = getText(CreateAccount_android.createAnaccountlbl);
 			 System.out.println(actualText +" Create Account lable");
 		     Assert.assertEquals(actualText, createAnAccountlbl);
 		     Type(CreateAccount_android.emailtxt, email, emailtxt);
 		     click(CreateAccount_android.nextbtn, nextbtn);
-		     Thread.sleep(2500);
+		 	waitforPageLoad(5);
 		     String text = getText(CreateAccount_android.nextletscreateanaccountlbl);
 		     System.out.println(text +"next lets create ");
 		     Assert.assertEquals(text, nextletscreateaccountlbl);
@@ -63,7 +63,7 @@ public class CreateAccountLib_android extends ScreenBase{
 		     Type(CreateAccount_android.verifypasswordtxt, verifyPwd, verifypassword);
 		     click(CreateAccount_android.termsconditionchkbox, termsconditionchkbox);
 		     click(CreateAccount_android.signupbtn, signupbtn);
-		     Thread.sleep(2500);
+		 	waitforPageLoad(5);
 		     LongPressButton(CreateAccount_android.Monthbtn);
 		     
 		     CreateAccount_android.selectValueFromPopUp(monthoption, month);

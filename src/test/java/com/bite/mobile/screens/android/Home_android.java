@@ -14,7 +14,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class Home_android extends ScreenBase {
 	public Home_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 60, TimeUnit.SECONDS), this);
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 
 	}
 	public static By LetsStart;
@@ -43,19 +43,10 @@ public class Home_android extends ScreenBase {
 	public static void selectLocation(String locations, String name) throws InterruptedException{
 		
 		try {
-			Thread.sleep(3000);
+			waitforPageLoad(5);
 		List<MobileElement> locationsList = driver.findElementsByXPath("//android.widget.ListView[@content-desc='UITestLocationsList']/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup");
-//		List<MobileElement> locationsList = driver.findElementsByXPath("//*[contains(text(),'"+locations+"')]");
-		int count = locationsList.size();
 		locationsList.get(0).click();
-//		System.out.println("Found Number of locations "+ count);
-//		for (MobileElement mobileElement : locationsList) {
-//			if (mobileElement.getText().trim().contains(locations)) {
-//				Thread.sleep(500);
-//				mobileElement.click();
-//				break;
-//			}
-//		}
+		test.log(LogStatus.PASS, "To Verify is User able to click on on " + name, locations + " Tapped successfully");
 		} catch (Exception e) {
 			test.log(LogStatus.ERROR, "To verify " + name + " is clickable with in provided time ",
 					"An exception occurred waiting for " + name + " to enter text" + e.getMessage());

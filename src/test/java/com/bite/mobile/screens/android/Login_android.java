@@ -11,7 +11,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class Login_android extends ScreenBase {
 	public Login_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 
 	}
 	public static By signintitle;

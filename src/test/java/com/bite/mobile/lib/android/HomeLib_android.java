@@ -33,14 +33,14 @@ public class HomeLib_android extends ScreenBase{
 	 */
 	public void launchApp() throws Throwable {
 		try {
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			test.log(LogStatus.PASS, "To Verify is User able to Tap on " + LetsStart, LetsStart + " Tapped successfully");
 			Tap(639, 2230, LetsStart);
-			Thread.sleep(200);
+			waitforPageLoad(5);
 			Tap(665, 2434, LetsStart);
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			click(Home_android.allowbtn, allowbtn);
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			click(Home_android.okbtn, okbtn);
 			
 		} catch(Exception e) {
@@ -49,15 +49,14 @@ public class HomeLib_android extends ScreenBase{
 
 	}
 	public void searchAndSelectLocation(String location) throws InterruptedException {
-		
+		waitforPageLoad(5);
 		Type(Home_android.searchlocationnametext, location, searchLocationtxt);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		click(Home_android.searchButton, searchbtn);
 		try {
-			test.log(LogStatus.PASS, "To Verify is User able to click on on " + locationList, location + " Tapped successfully");
-			Home_android.selectLocation(location, locationList);;
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			Home_android.selectLocation(location, locationList);
+			waitforPageLoad(5);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

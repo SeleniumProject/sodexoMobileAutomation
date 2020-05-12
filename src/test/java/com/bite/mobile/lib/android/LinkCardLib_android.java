@@ -28,29 +28,27 @@ public class LinkCardLib_android extends ScreenBase{
 	}
 	
 	public void FillCardDetails(String cardnum, String MM, String YYYY, String cvv, String zipCode) throws InterruptedException {
-		Thread.sleep(2000);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		LinkCard_android.clickLinkCard();
 		//LongPressButton(LinkCard_android.linkcard);
-		Thread.sleep(7000);
+		waitforPageLoad(5);
 		Type(LinkCard_android.cardNumber, cardnum, cardNumber);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		System.out.println("MOnth select");
 		LongPressButton(LinkCard_android.month);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		CreateAccount_android.selectValueFromPopUp(MM, month);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
         LongPressButton(LinkCard_android.year);
-        Thread.sleep(2000);
+    	waitforPageLoad(5);
 		CreateAccount_android.selectValueFromPopUp(YYYY, year);
-		Thread.sleep(2000);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		Type(LinkCard_android.cvv, cvv, cvvNum);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		Type(LinkCard_android.zipcode, zipCode, zipcodes);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		LinkCard_android.clickLinkCard();
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 	}
 
 	

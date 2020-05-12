@@ -10,12 +10,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.WithTimeout;
 
 public class Menus_android extends ScreenBase {
+	
 	public Menus_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
-
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 	}
 	public static By backImageButtonFromLogout;
 	public static By backImageFromProfile;
@@ -62,7 +63,7 @@ public class Menus_android extends ScreenBase {
 		driver.findElement(addtomyorder).click();
 	}
 	public static void selectItemFromOrders(String item) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		List<MobileElement> ele = driver.findElementsByXPath("//android.widget.TextView[@text='"+item+"']");
 		ele.get(0).click();
 //		

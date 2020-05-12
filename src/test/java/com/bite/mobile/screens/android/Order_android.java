@@ -7,13 +7,12 @@ import org.openqa.selenium.support.PageFactory;
 import com.bite.mobile.base.ScreenBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class Order_android extends ScreenBase {
 	public Order_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 
 	}
 	public static By pleaseloginlbl;
@@ -28,9 +27,6 @@ public class Order_android extends ScreenBase {
 	public static By addpaymentMethod;
 	public static By addpaymentMethod1;
 	
-
-	
-
 	static {
 		
 		pleaseloginlbl = By.xpath("//*[@text='Please login if you want to submit an order.']");
@@ -44,35 +40,27 @@ public class Order_android extends ScreenBase {
 		enterspecialinstructiontxt = By.xpath("//android.widget.EditText[@text='Enter Special Instructions Here']");
 		addpaymentMethod = By.xpath("//android.widget.Button[@text='ADD PAYMENT METHOD']");
 		addpaymentMethod1 = By.id("android:id/button1");
-		
-		
-	
 	}	
 
 	public static  MobileElement addPaymentMethod() {
 		return driver.findElement(addpaymentMethod1);
 	}
 	public static void selectTimeSlot() throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		List<MobileElement> btn = driver.findElementsByXPath("android.widget.Button");
 		List<MobileElement> text = driver.findElementsByXPath("android.widget.TextView");
-		Thread.sleep(2500);
+		waitforPageLoad(5);
 		btn.get(0).click();
-		Thread.sleep(3000);
+		waitforPageLoad(5);
 		text.get(5).click();
-		Thread.sleep(2000);
-		
-		
+		waitforPageLoad(5);
 	}
 	
 	public static void swipUp() throws InterruptedException {
-		
-//		Thread.sleep(2500);
 //		TouchAction tc = new TouchAction(driver);
 //		tc.press(491, 2197).moveTo(603, 776).waitAction(3000).release().perform();
 
 	}
-	
 	public static void AddPaymentDetails() {
 		MobileElement el1 = (MobileElement) driver.findElementById("android:id/button1");
 		el1.click();

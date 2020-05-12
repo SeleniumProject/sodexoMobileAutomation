@@ -28,72 +28,67 @@ public class MenusLib_android extends ScreenBase{
 	}
 	
 	public  void selectMenu(String menuType) throws InterruptedException {
-		Thread.sleep(2000);
-		
+		waitforPageLoad(5);		
 		LongPressButton(Menus_android.menustab);
-//		waitForElementNoLongerPresent(60);
-//		waitForLoadingNoLongerPresent(60);
 		Menus_android.selectMenuItem(menuType);
 	}
 	
 	public void selectOrder(String menutype) {
 		try {
 			LongPressButton(Menus_android.ordertab);
-			Thread.sleep(3500);
-//			waitForElementNoLongerPresent(60);
+			waitforPageLoad(5);
 			Menus_android.selectMenuItem(menutype);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
 	}
 	
-	public void selectMenuFromOrder() throws InterruptedException {
-		Thread.sleep(7500);
-		Menus_android.selectMenuItem("HBO Cafe Grill");
+	public void selectMenuFromOrder(String menuItem) throws InterruptedException {
+		waitforPageLoad(5);
+		Menus_android.selectMenuItem(menuItem);
 	}
 	
 	public void clickOnReviewOrder() throws InterruptedException {
-		Thread.sleep(3000);
+		waitforPageLoad(5);
 		Menus_android.clickOnReviewOrder();
-		Thread.sleep(12000);
+		waitforPageLoad(5);
 		
 	}
 	public void clickAddToMyOrder() throws InterruptedException {
-		Thread.sleep(4000);
+		waitforPageLoad(5);
 		Menus_android.clickAddToMyOrder();
-		Thread.sleep(3000);
+		waitforPageLoad(5);
 		Menus_android.clickAddToMyOrder();
 	}
 	public void selectItemFromOrderList(String item) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		Menus_android.selectItemFromOrders(item);
 	}
 	public void selectOrderTab() throws InterruptedException {
-		Thread.sleep(3000);
+		waitforPageLoad(5);
 		LongPressButton(Menus_android.ordertab);
-		Thread.sleep(3500);
+		waitforPageLoad(5);
 
 	}
 	
 	public void LetsOrderButton() throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		(new TouchAction(driver)).tap(639, 2415).perform();
 
 //		LongPressButton(MenusScreen_android.letsorder);
 	}
 	public void selectDateAndItem(int day, String itemName) {
 		try {
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			if (Menus_android.nomenutextdisplayed().isDisplayed()) {
 				Menus_android.selectDate(day+1);
 			} else {
 				Menus_android.selectDate(day);
 			}
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 			Menus_android.selectMenuItem(itemName);
-			Thread.sleep(2000);
+			waitforPageLoad(5);
 		
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

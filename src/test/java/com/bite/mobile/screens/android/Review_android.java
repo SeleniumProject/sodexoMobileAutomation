@@ -11,7 +11,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class Review_android extends ScreenBase {
 	public Review_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
-		PageFactory.initElements(new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS), this);
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 120, TimeUnit.SECONDS), this);
 
 	}
 	public static By pleaserateyourexp;
@@ -42,11 +42,13 @@ public class Review_android extends ScreenBase {
 	}
 	
 	
-	public String getRateText() {
+	public String getRateText() throws InterruptedException {
+		waitforPageLoad(5);
 		return driver.findElement(pleaserateyourexp).getText();
 	}
 	
-	public String getTellusaboutyourexpText() {
+	public String getTellusaboutyourexpText() throws InterruptedException {
+		waitforPageLoad(5);
 		return driver.findElement(pleaserateyourexp).getText();
 	}
 	

@@ -23,7 +23,7 @@ public class LoginLib_android extends ScreenBase{
 
 	public void Login(String email, String password) throws Throwable {
 		try {
-			Thread.sleep(2000);
+			waitforPageLoad(5);
               //Type(LoginScreen_android.emailedittxt, email, emailtxt);
               Type(Login_android.passwordedittxt, password, passwordtxt);
               click(Login_android.signinsignupbtn, signinbtn);

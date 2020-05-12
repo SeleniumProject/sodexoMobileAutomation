@@ -132,6 +132,7 @@ public class CommonUtils {
 //		capabilities.setCapability("auto	ceptAlerts", true);
 //		capabilities.setCapability("autoDismissAlerts", true);
 		// capabilities.setCapability("skipUnlock","true");
+		capabilities.setCapability("testdroid_testTimeout", 1200);
 		capabilities.setCapability("noReset", "false");
 //		capabilities.setCapability("fullReset","true");
 		capabilities.setCapability("takesScreenshot", true);

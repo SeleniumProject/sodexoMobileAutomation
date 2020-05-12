@@ -12,6 +12,8 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.SkipException;
+
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -21,7 +23,6 @@ public class ScreenBase extends TestBase {
 
 	public static AppiumDriver<MobileElement> driver;
 	public WebDriverWait wait;
-
 	public void waitForElementPresent(long duration, String locator) {
 
 		wait = new WebDriverWait(driver, duration);
@@ -35,6 +36,14 @@ public class ScreenBase extends TestBase {
 
 	}
 
+	public static void waitforPageLoad(long timeout) throws InterruptedException {
+		try {
+			Thread.sleep(timeout*1000);
+		} catch (Exception e) {
+			new SkipException("Unable to click / Type / select with in the Specified Time in"+ (timeout*1000) + " sec");
+		}
+		     
+	}
 	public void waitForElementNoLongerPresent(long timeout) {
 
 		new WebDriverWait(driver, timeout).until(
@@ -68,7 +77,7 @@ public class ScreenBase extends TestBase {
 
 	public void click(By elementLocator, String name) {
 		try {
-			Thread.sleep(2500);
+			waitforPageLoad(5);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
@@ -83,7 +92,7 @@ public class ScreenBase extends TestBase {
 
 	public void Type(By elementLocator, String value, String name) {
 		try {
-			Thread.sleep(2200);
+			waitforPageLoad(5);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
@@ -142,7 +151,7 @@ public class ScreenBase extends TestBase {
 
 	public void Tap(int x, int y, String name) {
 		try {
-			Thread.sleep(2500);
+			waitforPageLoad(5);
 			(new TouchAction(driver)).tap(x, y).release().perform();
 		} catch (Exception e) {
 //			test.log(LogStatus.ERROR, "To verify " + name + " is clickable with in provided time ",
@@ -164,7 +173,7 @@ public class ScreenBase extends TestBase {
 	}
 
 	public static void LongPressButton(By elementLocator) throws InterruptedException {
-		Thread.sleep(2500);
+		waitforPageLoad(5);
 		TouchAction touchAction = new TouchAction(driver);
 		touchAction.longPress(driver.findElement(elementLocator), 2500).release().perform();
 	}
@@ -182,13 +191,13 @@ public class ScreenBase extends TestBase {
 	}
 
 	public static void Press(By elementLocator) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		TouchAction touchAction = new TouchAction(driver);
 		touchAction.press(driver.findElement(elementLocator)).waitAction(1500).release().perform();
 	}
 
 	public static void LongPressbuttonWithCooridinates(By elementLocator, int x, int y) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		TouchAction touchAction = new TouchAction(driver);
 		touchAction.tap(driver.findElement(elementLocator), x, y).waitAction(2000).release().perform();
 	}

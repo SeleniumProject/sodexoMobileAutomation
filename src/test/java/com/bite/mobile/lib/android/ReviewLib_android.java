@@ -36,9 +36,9 @@ public class ReviewLib_android extends ScreenBase{
 	}
 
 	public void fillReview(String comment) throws InterruptedException {
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		Type(Review_android.commentstxt, comment, commentstxt);
-		Thread.sleep(2000);
+		waitforPageLoad(5);
 		click(Review_android.submitbtn, submitbtn);
 	}
 
