@@ -26,43 +26,47 @@ public class Menus_iOS extends ScreenBase {
 	public static By date;
 	public static By item;
 	public static By reviewbtn;
+	public static By addtomyorder;
+	public static By revieworder;
 
 	
 
 	static {
 		
-		backImageButtonFromLogout = By.xpath("//android.widget.ImageButton");
-		backImageFromProfile = By.xpath("//android.widget.ImageButton");
-		newstab = By.xpath("//android.widget.TextView[@text='NEWS']");
-		menustab = By.xpath("//android.widget.TextView[@text='MENUS']");
-		rewardstab = By.xpath("//android.widget.TextView[@text='REWARDS']");
-		ordertab = By.xpath("//android.widget.TextView[@text='ORDER']");
-		paytab = By.xpath("//android.widget.TextView[@text='PAY']");
-		menuitems = By.xpath("//android.widget.TextView[@text='android.widget.TextView']");
-		date = By.xpath("//android.widget.TextView[@text='Sat']");
-		item = By.xpath("//android.widget.TextView[@text='Roast Turkey & Rice Soup']");
-		reviewbtn = By.xpath("//android.widget.Button[@text='REVIEW']");
-
+		//backImageButtonFromLogout = By.xpath("//android.widget.ImageButton");
+		//backImageFromProfile = By.xpath("//android.widget.ImageButton");
+		newstab = By.xpath("//*[@text='NEWS']");
+		menustab = By.xpath("//*[@text='MENUS']");
+		rewardstab = By.xpath("//*[@text='REWARDS']");
+		ordertab = By.xpath("//*[@text='ORDER']");
+		paytab = By.xpath("//*[@text='PAY']");
+		menuitems = By.xpath("//*[@text='UITestOutletsList']");
+		reviewbtn = By.xpath("//*[@text='REVIEW']");
+		addtomyorder = By.xpath("//*[@text='ADD TO MY ORDER']");
+		revieworder = By.xpath("//*[@text='REVIEW ORDER']");
+	}
+	
+	public static void selectDate(String date) throws InterruptedException {
+		waitforPageLoad(5);
+		driver.findElement(By.xpath("//*[@class='UIAView' and ./*[@text='"+date+"']]")).click();;
 	}
 	
 	public static  void selectMenuItem(String menuType) throws InterruptedException {
-		List<MobileElement> menuitems = driver.findElementsByXPath("//android.widget.TextView");
-		Thread.sleep(500);
-		int count = menuitems.size();
-		if (count>=1) {
-			for (MobileElement mobileElement : menuitems) {
-				Thread.sleep(500);
-				System.out.println("Menu Item is : " + mobileElement.getText());
-				if (mobileElement.getText().trim().contains(menuType)) {
-					Thread.sleep(500);
-				     mobileElement.click();
-				     break;
-				}
-			}
+		waitForElementpresent(menuitems);
+		LongPressButton(menuitems);
 		}
+	public static void clickOnReviewOrder() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElement(revieworder).click();
 	}
-
 	
 	
-
-}
+	public static void clickAddToMyOrder() {
+		driver.findElement(addtomyorder).click();
+	}
+	public static void selectItemFromOrders(String item) throws InterruptedException {
+	waitforPageLoad(5);
+	List<MobileElement> ele = driver.findElementsByXPath("//*[@text='"+item+"']");
+	ele.get(0).click();
+	}
+	}

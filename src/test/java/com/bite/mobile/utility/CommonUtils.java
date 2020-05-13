@@ -99,11 +99,11 @@ public class CommonUtils {
 				CommonUtils.DEVICE_NAME);
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,
 				CommonUtils.AUTOMATION_INSTRUMENTATION);
-//		capabilities.setCapability("resetOnSessionStartOnly","true");
-		capabilities.setCapability("ios.native",false);
+////		capabilities.setCapability("resetOnSessionStartOnly","true");
+		capabilities.setCapability("ios.native",true);
 		capabilities.setCapability("applicationClearData",true);
-		capabilities.setCapability("dataReset",true);
-		capabilities.setCapability("instrumentApp", false);
+		capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+		capabilities.setCapability("instrumentApp", true);
 
 		//capabilities.setCapability(MobileCapabilityType.APP, CommonUtils.APPLICATION_NAME);
 	

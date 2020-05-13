@@ -54,7 +54,7 @@ public class CreateAccount_iOS extends ScreenBase {
 		
 		createAnaccountlbl = By.xpath("//[@text='Create an Account']");
 		emailtxt = By.xpath("//*[@placeholder='Email']");
-		nextbtn = By.xpath("//*[@name='UITestNext']");
+		nextbtn = By.xpath("//*[@label='NEXT']");
 		guestSignIn = By.xpath("//[@name='UITestGuestSignIn']");
 		nextletscreateanaccountlbl = By.xpath("/[@text='Next, let’s create an account:']");
 		editboxes = By.xpath("//android.widget.EditText");
@@ -83,6 +83,7 @@ public class CreateAccount_iOS extends ScreenBase {
 		return "bitetest"+ randomInt +"@gmail.com";
 	}
 
+	
 	public static void selectValueFromPopUp(String value, String name) {
 		try {
 			Thread.sleep(2000);

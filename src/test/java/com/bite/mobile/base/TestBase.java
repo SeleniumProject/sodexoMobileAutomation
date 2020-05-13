@@ -27,8 +27,8 @@ public class TestBase {
 	
 	
 	public static AppiumDriver<MobileElement> driver;
-	public static String loadPropertyFile = "Android_biteapp.properties";
-//	public static String loadPropertyFile = "IOS_biteapp.properties";
+//	public static String loadPropertyFile = "Android_biteapp.properties";
+	public static String loadPropertyFile = "IOS_biteapp.properties";
 	//public static String loadPropertyFile = "ios_careapp.properties";
 	public static ExtentTest test;
 	public static ExtentReports extent;
@@ -40,6 +40,14 @@ public class TestBase {
 
 		extent = new ExtentReports(System.getProperty("user.dir") + "\\testReports\\biteReport"
 				+ formater.format(calendar.getTime()) + ".html", false);
+		
+		extent.addSystemInfo("APP Type", "NATIVE");
+		extent.addSystemInfo("APP NAME", "Bite");
+		if (loadPropertyFile.contains("IOS")) {
+			extent.addSystemInfo("Target Device","iOS");
+		} else {
+		extent.addSystemInfo("Target Device","Android");
+		}
 
 	}
 	

@@ -2,6 +2,7 @@ package com.bite.mobile.lib.iOS;
 
 import org.testng.Assert;
 import com.bite.mobile.base.ScreenBase;
+import com.bite.mobile.screens.android.CreateAccount_android;
 import com.bite.mobile.screens.ios.CreateAccount_iOS;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -32,6 +33,11 @@ public class CreateanAccountLib_ios extends ScreenBase{
 	public CreateanAccountLib_ios(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		
+	}
+	public void enterEmailPressNext(String email) throws InterruptedException {
+	     Type(CreateAccount_iOS.emailtxt, email, emailtxt);
+	     waitforPageLoad(5);
+	     LongPressButton(CreateAccount_iOS.nextbtn);
 	}
 
 	public void CreateAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl, String firstName, String lastName,

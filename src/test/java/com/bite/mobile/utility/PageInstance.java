@@ -1,6 +1,5 @@
 package com.bite.mobile.utility;
 
-import com.bite.mobile.base.ScreenBase;
 import com.bite.mobile.base.TestBase;
 import com.bite.mobile.lib.android.CreateAccountLib_android;
 import com.bite.mobile.lib.android.HomeLib_android;

@@ -9,6 +9,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class Home_iOS extends ScreenBase {
@@ -26,20 +27,47 @@ public class Home_iOS extends ScreenBase {
 	public static By springvaleoption;
 	public static By okbtn;
 	public static By locationList;
+	public static By newstab;
+	public static By existingsearchlocation;
+	public static By findnewlocation;
+	public static By iconlocationhistory;
+	public static By locationFrompreviouslocation;
 
 
 	static {
 		
-		LetsStart = By.xpath("//[@name='UITestStartButton']");
-		LetsStartbtn = By.xpath("//*[@text=concat('LET', \\\"'\\\", 'S START')]");
-		allowbtn = By.xpath("//[@text='Allow']");
-		searchlocationnametext = By.xpath("//*[@text='Search location name']");
-		searchButton = By.xpath("//*[@name='UITestSearchButton']");
-        springvaleoption = By.xpath("//*[@name='UITestLocationsList']");
+		LetsStart = By.xpath("//*[@name='UITestStartButton']");
+		allowbtn = By.xpath("//*[@name='Always Allow']");
+		searchlocationnametext = By.xpath("//*[@placeholder='Search location name']");
+		existingsearchlocation = By.xpath("//*[@class='UIAStaticText']");
+		searchButton = By.xpath("//*[@text='icn search']");
 		okbtn = By.xpath("//*[@text='OK']");
-		locationList =By.xpath("//*[@text='Empty list']");
+		locationList =By.xpath("//*[@text='UITestLocationsList']");
+		newstab =By.xpath("//*[@text='NEWS']");
+		findnewlocation =By.xpath("//*[@text='Find new location...']");
+		iconlocationhistory =By.xpath("//*[@text='icn location history']");
+		iconlocationhistory =By.xpath("//*[@text='icn location history']");
 	}
 	
+	public static MobileElement isLetsStartDisplayed() {
+		return driver.findElement(LetsStart);
+	}
+	
+	public static MobileElement isOkPopUpDisplayed() {
+		return driver.findElement(okbtn);
+	}
+	public static void clickOnExistingLocation() {
+		List<MobileElement> ele = driver.findElements(By.xpath("//*[@class='UIAStaticText']"));
+				ele.get(0).click();
+	}
+
+	public static void clickPreviousLocation(String name) {
+		List<MobileElement> ele = driver.findElementsByXPath("//*[contains(text(),'"+name+"')]") ;
+		ele.get(0).click();;
+	}
+public static MobileElement isNewsElementDisplayed() {
+	return driver.findElement(newstab);
+}
 
 	public static void selectLocation() throws InterruptedException{
 		System.out.println("Started clicking for location list");

@@ -1,6 +1,8 @@
 package com.bite.mobile.lib.iOS;
 
 import com.bite.mobile.base.ScreenBase;
+import com.bite.mobile.screens.ios.Login_iOS;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
@@ -11,6 +13,7 @@ public class LoginLib_ios extends ScreenBase{
 	public String passwordtxt = "Password";
 	public String signinbtn = "SignIn";
 	
+	
 	public LoginLib_ios(AppiumDriver<MobileElement> driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -18,8 +21,10 @@ public class LoginLib_ios extends ScreenBase{
 
 	public void Login(String email, String password) throws Throwable {
 		try {
-
-            Thread.sleep(3000);
+			waitforPageLoad(5);
+              //Type(LoginScreen_android.emailedittxt, email, emailtxt);
+              Type(Login_iOS.passwordedittxt, password, passwordtxt);
+              click(Login_iOS.signinsignupbtn, signinbtn);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -38,7 +38,7 @@ public class ScreenBase extends TestBase {
 
 	public static void waitforPageLoad(long timeout) throws InterruptedException {
 		try {
-			Thread.sleep(timeout*1000);
+			Thread.sleep(timeout*500);
 		} catch (Exception e) {
 			new SkipException("Unable to click / Type / select with in the Specified Time in"+ (timeout*1000) + " sec");
 		}
@@ -74,10 +74,19 @@ public class ScreenBase extends TestBase {
 		driver.getKeyboard();
 
 	}
+	public static void waitForElementpresent(By elementLocator) {
+		try {
+			new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(elementLocator));
+		} catch (Exception e) {
+			// TODO: handle exception
+			new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(elementLocator));
+		}
+		
+	}
 
 	public void click(By elementLocator, String name) {
 		try {
-			waitforPageLoad(5);
+			waitForElementpresent(elementLocator);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
@@ -92,14 +101,15 @@ public class ScreenBase extends TestBase {
 
 	public void Type(By elementLocator, String value, String name) {
 		try {
-			waitforPageLoad(5);
+			waitForElementpresent(elementLocator);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
 			ele.click();
-			ele.clear();
+//			ele.clear();
 			hideKeyboard();
 			ele.sendKeys(value);
+			hideKeyboard();
 			test.log(LogStatus.PASS, "To Verify User able to Enter " + name, value + " Text entered successfully");
 
 		} catch (Exception e) {
@@ -173,7 +183,7 @@ public class ScreenBase extends TestBase {
 	}
 
 	public static void LongPressButton(By elementLocator) throws InterruptedException {
-		waitforPageLoad(5);
+		waitForElementpresent(elementLocator);
 		TouchAction touchAction = new TouchAction(driver);
 		touchAction.longPress(driver.findElement(elementLocator), 2500).release().perform();
 	}

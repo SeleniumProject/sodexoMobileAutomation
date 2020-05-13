@@ -1,5 +1,7 @@
 package com.bite.mobile.lib.iOS;
 
+import org.openqa.selenium.Point;
+
 import com.bite.mobile.base.ScreenBase;
 import com.bite.mobile.screens.android.Home_android;
 import com.bite.mobile.screens.ios.Home_iOS;
@@ -32,15 +34,37 @@ public class HomeLib_ios extends ScreenBase{
 			//Tap(639, 2230, LetsStart);
 			//Tap(665, 2434, LetsStart);
 //			click(HomeScreen_iOS.allowbtn, allowbtn);
-			Thread.sleep(1000);
-			click(Home_iOS.okbtn, okbtn);
-			Thread.sleep(1000);
+//			LongPressButton(Home_iOS.okbtn);
+//			 if(Home_iOS.isOkPopUpDisplayed().isDisplayed()) {
+//				
+//				
+//				LongPressButton(Home_iOS.okbtn);
+//					}
+//			 else if (Home_iOS.isNewsElementDisplayed().isDisplayed()) {
+//				Home_iOS.clickOnExistingLocation();
+//				waitforPageLoad(5);
+//				LongPressButton(Home_iOS.findnewlocation);
+//				waitforPageLoad(5);				
+//			}
+//			else if (Home_iOS.isLetsStartDisplayed().isDisplayed()) {
+//				waitforPageLoad(5);	
+//				LongPressButton(Home_iOS.LetsStart);
+//				waitforPageLoad(5);	
+//				LongPressButton(Home_iOS.allowbtn);
+//				waitforPageLoad(5);	
+//			}
+			Home_iOS.clickOnExistingLocation();
+			waitforPageLoad(5);		
 			Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			LongPressButton(Home_iOS.searchButton);
+			waitforPageLoad(5);		
+			LongPressButton(Home_iOS.iconlocationhistory);
+			waitforPageLoad(5);	
+           Home_iOS.clickPreviousLocation("CROSSROADS CAFE");
 //			click(HomeScreen_iOS.searchButton, searchbtn);
-			Thread.sleep(3500);
-			LongPressbuttonWithCooridinates(Home_iOS.locationList, 20, 292);
+			waitforPageLoad(5);		
+			
 //			HomeScreen_iOS.selectLocation();
 		} catch(Exception e) {
 			e.printStackTrace();
