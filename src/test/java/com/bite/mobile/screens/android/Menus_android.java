@@ -34,6 +34,10 @@ public class Menus_android extends ScreenBase {
 	public static By orderItems;
 	public static By addtomyorder;
 	public static By revieworder;
+	public static By backbtnfromorder;
+	public static By backbtnfromitemdetails;
+	public static By backbtnfrommenuitem;
+	public static By bitepaybtn;
     
 	static String  getDay = getTodayNameofTheWeek();
 	
@@ -56,6 +60,11 @@ public class Menus_android extends ScreenBase {
 		orderItems = By.xpath("android.widget.TextView");
 		addtomyorder = By.xpath("//android.widget.Button[@text='ADD TO MY ORDER']");
 		revieworder = By.xpath("//android.widget.Button[@text='REVIEW ORDER']");
+		backbtnfromorder= By.xpath("//*[@class='android.widget.ImageButton']");
+		bitepaybtn= By.xpath("//*[@text='Bite PAY']");
+		backbtnfromitemdetails= By.xpath("//*[@class='android.widget.ImageView' and ./parent::*[@class='android.view.ViewGroup']]");
+		backbtnfrommenuitem= By.xpath("//*[@class='android.widget.ImageView' and ./parent::*[@class='android.view.ViewGroup' and (./preceding-sibling::* | ./following-sibling::*)[@class='android.view.ViewGroup']]]");
+		
 
 	}
 	
@@ -102,11 +111,9 @@ public class Menus_android extends ScreenBase {
 	
 
 	public static  void selectMenuItem(String menuType) throws InterruptedException {
-		Thread.sleep(10000);
+		waitforPageLoad(30);
 		List<MobileElement> els4 = driver.findElementsByXPath("//android.widget.TextView[@text='"+menuType+"']");
 		els4.get(0).click();
-		
-		Thread.sleep(3500);
 //		List<MobileElement> menuitems = driver.findElementsByXPath("//android.widget.TextView[@text='"+menuType+"']");
 //		int count = menuitems.size();
 //		if (count>=1) {

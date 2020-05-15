@@ -21,7 +21,7 @@ public class Login_iOS extends ScreenBase {
 	public static By signinbtn;
 
 	static {
-		SigninSignupbtn = By.xpath("//android.widget.Button[@text='SIGN IN / SIGN UP']");
+		SigninSignupbtn = By.xpath("//*[@text='SIGN IN / SIGN UP']");
 		emailtxt = By.xpath("//*[@placeholder='Email Address']");
 		passwordtxt = By.xpath("//*[@placeholder='Password']");
 		signinbtn = By.xpath("//*[@text='SIGN IN']");

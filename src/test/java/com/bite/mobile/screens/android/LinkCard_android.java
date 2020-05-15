@@ -21,6 +21,7 @@ public class LinkCard_android extends ScreenBase {
 	public static By cvv;
 	public static By zipcode;
 	public static By linkcardbtn;
+	public static By AddPaymentMethod;
 	
 
 	
@@ -34,6 +35,7 @@ public class LinkCard_android extends ScreenBase {
 		cvv = By.xpath("//android.widget.EditText[@text='CVV']");
 		zipcode = By.xpath("//android.widget.EditText[@text='Zip code']");
 		linkcardbtn = By.id("//android.widget.Button[@text='LINK CARD']");
+		AddPaymentMethod = By.id("//*[@text='ADD PAYMENT METHOD']");
 	}	
 
 

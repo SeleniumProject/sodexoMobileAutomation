@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriverException;
@@ -87,9 +88,9 @@ public class ScreenBase extends TestBase {
 	public void click(By elementLocator, String name) {
 		try {
 			waitForElementpresent(elementLocator);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
-			wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
+//			WebDriverWait wait = new WebDriverWait(driver, 60);
+//			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
+//			wait.until(ExpectedConditions.elementToBeClickable(elementLocator));
 			driver.findElement(elementLocator).click();
 			test.log(LogStatus.PASS, "To Verify is User able to click on " + name, name + " clicked successfully");
 		} catch (Exception e) {
@@ -99,15 +100,13 @@ public class ScreenBase extends TestBase {
 		}
 	}
 
+
 	public void Type(By elementLocator, String value, String name) {
 		try {
 			waitForElementpresent(elementLocator);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
 			MobileElement ele = driver.findElement(elementLocator);
 			ele.click();
-//			ele.clear();
-			hideKeyboard();
+			ele.clear();
 			ele.sendKeys(value);
 			hideKeyboard();
 			test.log(LogStatus.PASS, "To Verify User able to Enter " + name, value + " Text entered successfully");
@@ -240,6 +239,26 @@ public class ScreenBase extends TestBase {
 		Format dateFormat = new SimpleDateFormat("MMM");
 		String res = dateFormat.format(new Date());
 		return res;
+	}
+	
+	public void scrollToView(By elementLocator) {
+		MobileElement element = driver.findElement(elementLocator);
+		driver.executeScript("arguments[0].scrollIntoView();", element);
+	}
+	public void scrollUp() throws Exception {
+		
+
+	    //The viewing size of the device
+	    Dimension size = driver.manage().window().getSize();
+
+	    //Starting y location set to 20% of the height (near bottom)
+	    int starty = (int) (size.height * 0.20);
+	    //Ending y location set to 80% of the height (near top)
+	    int endy = (int) (size.height * 0.80);
+	    //x position set to mid-screen horizontally
+	    int startx = size.width / 2;
+
+	    scroll(startx, starty, startx, endy);
 	}
 //	public boolean clicked(By locator, String locatorName) throws Throwable {
 //		boolean status = false;

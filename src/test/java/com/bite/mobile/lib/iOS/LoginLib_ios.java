@@ -23,8 +23,8 @@ public class LoginLib_ios extends ScreenBase{
 		try {
 			waitforPageLoad(5);
               //Type(LoginScreen_android.emailedittxt, email, emailtxt);
-              Type(Login_iOS.passwordedittxt, password, passwordtxt);
-              click(Login_iOS.signinsignupbtn, signinbtn);
+              Type(Login_iOS.passwordtxt, password, passwordtxt);
+              click(Login_iOS.SigninSignupbtn, signinbtn);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

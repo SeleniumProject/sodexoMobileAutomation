@@ -20,11 +20,17 @@ public class LinkCardLib_android extends ScreenBase{
 	public String cvvNum ="CVV";
 	public String zipcodes="Zip Code";
 	public String linkcardbtn="Link Card";
+	public String addpaymentmethod="ADD PAYMENT METHOD";
 	
 	
 	public LinkCardLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
 
+	}
+	
+	public void AddPaymentMethod() throws InterruptedException {
+		waitforPageLoad(5);
+		LongPressButton(LinkCard_android.AddPaymentMethod);
 	}
 	
 	public void FillCardDetails(String cardnum, String MM, String YYYY, String cvv, String zipCode) throws InterruptedException {

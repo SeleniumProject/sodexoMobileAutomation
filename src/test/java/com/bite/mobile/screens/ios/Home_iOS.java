@@ -9,6 +9,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -32,6 +33,8 @@ public class Home_iOS extends ScreenBase {
 	public static By findnewlocation;
 	public static By iconlocationhistory;
 	public static By locationFrompreviouslocation;
+	public static By existinglocationtop;
+	public static By menutab;
 
 
 	static {
@@ -45,25 +48,48 @@ public class Home_iOS extends ScreenBase {
 		locationList =By.xpath("//*[@text='UITestLocationsList']");
 		newstab =By.xpath("//*[@text='NEWS']");
 		findnewlocation =By.xpath("//*[@text='Find new location...']");
+		menutab =By.xpath("//*[@text='MENUS']");
 		iconlocationhistory =By.xpath("//*[@text='icn location history']");
-		iconlocationhistory =By.xpath("//*[@text='icn location history']");
+		existinglocationtop =By.xpath("//*[@class='UIAStaticText']");
 	}
 	
+	public static MobileElement isMenuTabDisplayed() {
+		return driver.findElement(menutab);
+	}
+	public static void clickExistingLocationTop() {
+		List<MobileElement> ele = driver.findElements(existinglocationtop);
+		ele.get(0).click();
+	}
+	public static MobileElement isIconLocationHistoryDisplayed() {
+		return driver.findElement(iconlocationhistory);
+	}
 	public static MobileElement isLetsStartDisplayed() {
+		waitForElementpresent(LetsStart);
 		return driver.findElement(LetsStart);
 	}
 	
 	public static MobileElement isOkPopUpDisplayed() {
+		waitForElementpresent(okbtn);
 		return driver.findElement(okbtn);
 	}
-	public static void clickOnExistingLocation() {
+	public static void clickOnExistingLocation() throws InterruptedException {
+		waitforPageLoad(5);
 		List<MobileElement> ele = driver.findElements(By.xpath("//*[@class='UIAStaticText']"));
 				ele.get(0).click();
 	}
-
-	public static void clickPreviousLocation(String name) {
-		List<MobileElement> ele = driver.findElementsByXPath("//*[contains(text(),'"+name+"')]") ;
-		ele.get(0).click();;
+     public static MobileElement IsExistingLocationDisplayed() {
+    	 return driver.findElement(existinglocationtop);
+    	 
+     }
+	public static MobileElement clickFindNewLocation() throws InterruptedException {
+		waitforPageLoad(5);
+		return driver.findElement(findnewlocation);
+	}
+	public static void clickPreviousLocation(String name) throws InterruptedException {
+		waitforPageLoad(5);
+		MobileElement ele = driver.findElementByXPath("//*[contains(text(),'"+name+"')]") ;
+		TouchAction ac = new TouchAction(driver);
+		ac.longPress(ele).waitAction(2000).release().perform();
 	}
 public static MobileElement isNewsElementDisplayed() {
 	return driver.findElement(newstab);

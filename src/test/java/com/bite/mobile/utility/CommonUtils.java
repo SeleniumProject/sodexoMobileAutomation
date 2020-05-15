@@ -1,16 +1,11 @@
 package com.bite.mobile.utility;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -89,6 +84,10 @@ public class CommonUtils {
 
 }
 	public static void setIOSCapabilities() {
+		capabilities.setCapability("reportDirectory", reportDirectory);
+		capabilities.setCapability("reportFormat", reportFormat);
+		capabilities.setCapability("testName", testName);
+		
 		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,
 				CommonUtils.BROWSER_NAME);
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,
@@ -99,11 +98,14 @@ public class CommonUtils {
 				CommonUtils.DEVICE_NAME);
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,
 				CommonUtils.AUTOMATION_INSTRUMENTATION);
-////		capabilities.setCapability("resetOnSessionStartOnly","true");
+//		capabilities.setCapability("resetOnSessionStartOnly",true);
 		capabilities.setCapability("ios.native",true);
-		capabilities.setCapability("applicationClearData",true);
-		capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+		capabilities.setCapability("unicodeKeyboard", "true");                                     
+		capabilities.setCapability("resetKeyboard", "true");
+//		capabilities.setCapability("applicationClearData",true);
 		capabilities.setCapability("instrumentApp", true);
+		capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
+//		capabilities.setCapability(MobileCapabilityType.NO_RESET, "True");
 
 		//capabilities.setCapability(MobileCapabilityType.APP, CommonUtils.APPLICATION_NAME);
 	
@@ -121,8 +123,12 @@ public class CommonUtils {
 		capabilities.setCapability("reportDirectory", reportDirectory);
 		capabilities.setCapability("reportFormat", reportFormat);
 		capabilities.setCapability("testName", testName);
-
-		// capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BROWSER_NAME);
+		
+		File filePath = new File(System.getProperty("user.dir"));
+		File appDir = new File(filePath, "src\\test\\resources\\app");
+		File app = new File(appDir, "com.sodexo.noram.stage.com.apk");
+		
+		//File app = new File(path+"\\src\\test\\resources\\app\\com.sodexo.noram.stage.com.apk");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, PLATFORM_NAME);
 		// capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,
 		// PLATFORM_VERSION);
@@ -131,17 +137,18 @@ public class CommonUtils {
 //		capabilities.setCapability("unicodeKeyboard", true);
 //		capabilities.setCapability("auto	ceptAlerts", true);
 //		capabilities.setCapability("autoDismissAlerts", true);
-		// capabilities.setCapability("skipUnlock","true");
-		capabilities.setCapability("testdroid_testTimeout", 1200);
+//		 capabilities.setCapability("skipUnlock","true");
+//		capabilities.setCapability("testdroid_testTimeout", 1200);
 		capabilities.setCapability("noReset", "false");
 //		capabilities.setCapability("fullReset","true");
 		capabilities.setCapability("takesScreenshot", true);
 		capabilities.setCapability("dataReset", true);
 //		capabilities.setCapability("unicodeKeyboard", true);
+		capabilities.setCapability("app", app.getAbsolutePath());
 //		capabilities.setCapability("resetKeyboard", true);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, BASE_PKG);
 		capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
-
+//		
 
 	}
 	

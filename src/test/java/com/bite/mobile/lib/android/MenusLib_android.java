@@ -21,6 +21,9 @@ public class MenusLib_android extends ScreenBase{
 	public static String ordertab ="ORDER tab";
 	public static String paytab="PAY tab";
 	public static String nomenufortheday="No menu for this day";
+	public static String backbtn1="back arrow button from order screen";
+	public static String backbtn2="back arrow button from Item details screen";
+	public static String backbtn3="back arrow button from menuitem screen";
 	
 	public MenusLib_android(AppiumDriver<MobileElement> driver) {
 		super(driver);
@@ -29,7 +32,9 @@ public class MenusLib_android extends ScreenBase{
 	
 	public  void selectMenu(String menuType) throws InterruptedException {
 		waitforPageLoad(5);		
+		waitForElementpresent(Menus_android.menustab);
 		LongPressButton(Menus_android.menustab);
+		
 		Menus_android.selectMenuItem(menuType);
 	}
 	
@@ -55,6 +60,15 @@ public class MenusLib_android extends ScreenBase{
 		waitforPageLoad(5);
 		
 	}
+	
+	public void backToMainScreen() throws InterruptedException {
+		waitforPageLoad(5);
+		click(Menus_android.backbtnfromorder, backbtn1);
+		waitforPageLoad(5);
+		click(Menus_android.backbtnfromitemdetails, backbtn2);
+		waitforPageLoad(5);
+		click(Menus_android.backbtnfrommenuitem, backbtn3);
+	}
 	public void clickAddToMyOrder() throws InterruptedException {
 		waitforPageLoad(5);
 		Menus_android.clickAddToMyOrder();
@@ -66,12 +80,22 @@ public class MenusLib_android extends ScreenBase{
 		Menus_android.selectItemFromOrders(item);
 	}
 	public void selectOrderTab() throws InterruptedException {
-		waitforPageLoad(5);
+		waitForElementpresent(Menus_android.ordertab);
 		LongPressButton(Menus_android.ordertab);
 		waitforPageLoad(5);
 
 	}
 	
+	public void selectPayTab() throws InterruptedException {
+		waitForElementpresent(Menus_android.paytab);
+		LongPressButton(Menus_android.paytab);
+		waitforPageLoad(5);
+	}
+	
+	public void clickBitePay() throws InterruptedException {
+		waitforPageLoad(5);
+		LongPressButton(Menus_android.bitepaybtn);
+	}
 	public void LetsOrderButton() throws InterruptedException {
 		waitforPageLoad(5);
 		(new TouchAction(driver)).tap(639, 2415).perform();

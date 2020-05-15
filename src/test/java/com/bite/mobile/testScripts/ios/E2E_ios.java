@@ -1,154 +1,179 @@
-package com.bite.mobile.testScripts.ios;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import com.bite.mobile.base.ScreenBase;
-import com.bite.mobile.base.TestBase;
-import com.bite.mobile.lib.iOS.CreateanAccountLib_ios;
-import com.bite.mobile.lib.iOS.HomeLib_ios;
-import com.bite.mobile.lib.iOS.LinkCardLib_ios;
-import com.bite.mobile.lib.iOS.LoginLib_ios;
-import com.bite.mobile.lib.iOS.MenusLib_ios;
-import com.bite.mobile.lib.iOS.OrderLib_ios;
-import com.bite.mobile.utility.Attributes;
-import com.bite.mobile.utility.TestUtil;
-public class E2E_ios extends TestBase{
-	
-	
-	HomeLib_ios home;
-	LoginLib_ios login;
-	CreateanAccountLib_ios signup;
-	MenusLib_ios menus;
-	OrderLib_ios order;
-	LinkCardLib_ios card;
-	@BeforeTest
-	public void init(){
-	
-	   home = new HomeLib_ios(driver);
-	   login = new LoginLib_ios(driver);
-	   signup = new CreateanAccountLib_ios(driver);
-	   menus = new MenusLib_ios(driver);
-	   order = new OrderLib_ios(driver);
-	   card = new LinkCardLib_ios(driver);
-	}
-	
-	@Attributes(Category = "Regression", State = "Ready")
-	@Test(priority = 0, dataProvider="launch")
-	public void LaunchBiteApp(String location) throws InterruptedException{
-			test = extent.startTest("Bite App: Launch App and Search For Location");
-			try {
-				Thread.sleep(7000);
-			home.LaunchApp("crossroads");
-		} catch (Throwable e) {
+			package com.bite.mobile.testScripts.ios;
 			
-			e.printStackTrace();
-		}
-	}
-	
-	@Attributes(Category = "Regression", State = "Ready")
-	@Test(enabled = true, priority = 1, dataProvider = "login")
-	public void Login(String email, String password) throws InterruptedException {
-		test = extent.startTest("Bite App: Login to Bite App");
-		try {
-			signup.enterEmailPressNext(email);
-			login.Login(email, password);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
-	@Attributes(Category = "Regression", State = "Ready")
-	@Test(enabled = false, priority = 2, dataProvider = "menuData")
-	public void selectingItem(String menuType, String itemName) {
-		test = extent.startTest("Bite App: Selecting menu and item");
-		int day = ScreenBase.convertDate();
-		try {
-			menus.selectMenu(menuType);
-			menus.selectDateAndItem("16");
-//			menus.ReviewButton();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Attributes(Category = "Regression", State = "Ready")
-	@Test(enabled = true, priority = 2, dataProvider = "orderdata_ios")
-	public void Order(String menuType, String itemName) throws InterruptedException {
-		test = extent.startTest("Bite App: Order item");
-		menus.selectOrderTab();
-		
-	   // menus.LetsOrderButton();
-		menus.selectMenuFromOrder();
-		menus.selectItemFromOrderList(itemName);
-		menus.SelectItemFromItemDetails("White", "Double");
-        menus.clickAddToMyOrder();
-       menus.clickOnReviewOrder();
-	}
-	@Attributes(Category = "Regression", State = "Ready")
-	@Test(enabled = true, priority = 3, dataProvider = "login")
-	public void LoginFromOrder(String email, String password) throws Throwable {
-		test = extent.startTest("Bite App: Login from Order Screen");
-		order.Login(email, password);
-	}
-	@Attributes(Category = "Regression", State = "NotReady")
-	@Test(enabled = true, priority = 4, dataProvider = "pickupdata")
-	public void PickUpDetailsAndPlaceOrder(String place, String time, String phoneNumber, String nameoncard, String cardnum, String MM, String YY, String cvv) throws InterruptedException {
-		test = extent.startTest("Bite App: Login from Order Screen");
-		order.EnterPickUpPlace(place);
-		order.PickUpTime(time);
-		order.PhoneNumber(phoneNumber);
-		order.clickPayByCard();
-		card.FillCardDetails(nameoncard, cardnum, MM, YY, cvv);
-		
-	}
-	@Test(enabled = false,priority =1, dataProvider = "CreateAccountData" )
-	public void CreateAnAccount(String email, String createAnAccountlbl,  String nextletscreateaccountlbl, String firstName, String  lastName, String password, String verifyPwd, String  monthoption, String yearoption, String genderoption, String phoneoption ) throws Throwable
-	{
-		test = extent.startTest("Bite App: Create an Account");
-         email = signup.SetEmail();
-      
-		try {
-			Thread.sleep(2000);
-			signup.CreateAnAccount(email, createAnAccountlbl, nextletscreateaccountlbl, firstName, lastName, password, verifyPwd, monthoption, yearoption, genderoption, phoneoption);
-	       	menus.selectMenu("Corporate Master Menu");
-//	       	menus.selectDateAndItem();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	@DataProvider(name = "launch")
-	public static Object[][] launchData() {
-		return TestUtil.getData("launch");
-	}
-
-	@DataProvider(name = "instructions")
-	public static Object[][] instructions() {
-		return TestUtil.getData("instructions");
-	}
-	
-	@DataProvider(name = "login")
-	public static Object[][] login() {
-		return TestUtil.getData("login");
-	}
-	
-	@DataProvider(name = "menuData")
-	public static Object[][] menuData() {
-		return TestUtil.getData("menuData");
-	}
-	
-	@DataProvider(name="CreateAccountData")
-	public static Object[][] CreateAccountData() {
-		return TestUtil.getData("createanaccount");
-	}
-	
-	@DataProvider(name = "orderdata")
-	public static Object[][] orderdata() {
-		return TestUtil.getData("orderdata");
-	}
-	
-	@DataProvider(name = "cardDetails")
-	public static Object[][] cardDetails() {
-		return TestUtil.getData("cardDetails");
-	}
-	
-
-}
+			import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+			import org.testng.annotations.DataProvider;
+			import org.testng.annotations.Test;
+			import com.bite.mobile.base.TestBase;
+			import com.bite.mobile.lib.iOS.CreateanAccountLib_ios;
+			import com.bite.mobile.lib.iOS.HomeLib_ios;
+			import com.bite.mobile.lib.iOS.LinkCardLib_ios;
+			import com.bite.mobile.lib.iOS.LoginLib_ios;
+			import com.bite.mobile.lib.iOS.MenusLib_ios;
+			import com.bite.mobile.lib.iOS.OrderLib_ios;
+			import com.bite.mobile.utility.Attributes;
+			import com.bite.mobile.utility.PageInstance;
+			import com.bite.mobile.utility.TestUtil;
+import com.gargoylesoftware.htmlunit.Page;
+			
+			public class E2E_ios extends TestBase {
+			
+				HomeLib_ios home;
+				LoginLib_ios login;
+				CreateanAccountLib_ios ca_ios;
+				MenusLib_ios menus;
+				OrderLib_ios order;
+				LinkCardLib_ios card;
+			
+				@BeforeTest
+				public void init() {
+			             //  resetApp();
+				}
+			
+				@Attributes(Category = "Regression", State = "Ready")
+				@Test(priority = 0, dataProvider = "launch")
+				public void LaunchBiteApp(String location) throws InterruptedException {
+					test = extent.startTest("Bite App: Launch App and Search For Location");
+					try {
+						PageInstance.home_ios().LaunchApp(location);
+					} catch (Throwable e) {
+			
+						e.printStackTrace();
+					}
+				}
+			
+				@Attributes(Category = "Regression", State = "Ready")
+				@Test(enabled = true, priority = 1, dataProvider = "login")
+				public void Login(String email, String password) throws InterruptedException {
+					test = extent.startTest("Bite App: Login to Bite App");
+					try {
+						PageInstance.ca_ios().enterEmailPressNext(email);
+						PageInstance.login_ios().Login(email, password);
+					} catch (Throwable e) {
+						e.printStackTrace();
+					}
+				}
+			
+				@Attributes(Category = "Regression", State = "Ready")
+				@Test(enabled = true, priority = 2, dataProvider = "menuData")
+				public void selectingItem(String menuType, String itemName) {
+					test = extent.startTest("Bite App: Selecting menu and item");
+					// int day = ScreenBase.convertDate();
+					try {
+						PageInstance.menus_ios().selectMenu(menuType);
+						Thread.sleep(2000);
+						PageInstance.menus_ios().selectDate("16");
+						Thread.sleep(2000);
+						PageInstance.review_ios().clickReview();
+						Thread.sleep(2000);
+						PageInstance.review_ios().clickSmileEmoji();
+						PageInstance.review_ios().EnterExperienceComments("Food is good");
+						PageInstance.review_ios().submitReview();
+						PageInstance.review_ios().closePopUP();
+						PageInstance.review_ios().backToOrderMenu();
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			
+				@Attributes(Category = "Regression", State = "Ready")
+				@Test(enabled = true, priority = 3, dataProvider = "orderdata_ios")
+				public void Order(String menuType, String itemName) throws InterruptedException {
+					test = extent.startTest("Bite App: Order item");
+					PageInstance.menus_ios().selectOrderTab();
+					// menus.LetsOrderButton();
+				//	PageInstance.menus_ios().selectMenuFromOrder();
+					
+					//PageInstance.menus_ios().selectItemFromOrderList(itemName);
+				//	PageInstance.menus_ios().SelectItemFromItemDetails("White", "Double");
+					PageInstance.menus_ios().AddToMyOrder();
+					PageInstance.menus_ios().OnReviewOrder();
+					PageInstance.menus_ios().Login();
+				}
+			
+				@Attributes(Category = "Regression", State = "Ready")
+				@Test(enabled = false, priority = 3, dataProvider = "login")
+				public void LoginFromOrder(String email, String password) throws Throwable {
+					test = extent.startTest("Bite App: Login from Order Screen");
+					PageInstance.order_ios().Login(email, password);
+				}
+			
+				@Attributes(Category = "Regression", State = "NotReady")
+				@Test(enabled = false, priority = 4, dataProvider = "pickupdata")
+				public void PickUpDetailsAndPlaceOrder(String place, String time, String phoneNumber, String nameoncard,
+						String cardnum, String MM, String YY, String cvv) throws InterruptedException {
+					test = extent.startTest("Bite App: Login from Order Screen");
+					PageInstance.order_ios().EnterPickUpPlace(place);
+					PageInstance.order_ios().PickUpTime(time);
+					PageInstance.order_ios().PhoneNumber(phoneNumber);
+					PageInstance.order_ios().clickPayByCard();
+					PageInstance.card_ios().FillCardDetails(nameoncard, cardnum, MM, YY, cvv);
+			
+				}
+			
+				@Test(enabled = false, priority = 1, dataProvider = "CreateAccountData")
+				public void CreateAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl,
+						String firstName, String lastName, String password, String verifyPwd, String monthoption, String yearoption,
+						String genderoption, String phoneoption) throws Throwable {
+					test = extent.startTest("Bite App: Create an Account");
+					email = PageInstance.ca_ios().SetEmail();
+			
+					try {
+						Thread.sleep(2000);
+						PageInstance.ca_ios().CreateAnAccount(email, createAnAccountlbl, nextletscreateaccountlbl, firstName, lastName, password,
+								verifyPwd, monthoption, yearoption, genderoption, phoneoption);
+						menus.selectMenu("Corporate Master Menu");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			
+				@DataProvider(name = "launch")
+				public static Object[][] launchData() {
+					return TestUtil.getData("launch");
+				}
+			
+				@DataProvider(name = "instructions")
+				public static Object[][] instructions() {
+					return TestUtil.getData("instructions");
+				}
+			
+				@DataProvider(name = "login")
+				public static Object[][] login() {
+					return TestUtil.getData("login");
+				}
+			
+				@DataProvider(name = "menuData")
+				public static Object[][] menuData() {
+					return TestUtil.getData("menuData");
+				}
+			
+				@DataProvider(name = "CreateAccountData")
+				public static Object[][] CreateAccountData() {
+					return TestUtil.getData("createanaccount");
+				}
+			
+				@DataProvider(name = "orderdata")
+				public static Object[][] orderdata() {
+					return TestUtil.getData("orderdata");
+				}
+			
+				@DataProvider(name = "cardDetails")
+				public static Object[][] cardDetails() {
+					return TestUtil.getData("cardDetails");
+				}
+				@DataProvider(name = "orderdata_ios")
+				public static Object[][] orderdata_ios() {
+					return TestUtil.getData("orderdata_ios");
+				}
+				
+				
+				@AfterTest
+				public void endSession() {
+					extent.endTest(test);
+					extent.flush();
+					extent.close();
+					System.out.println("Ending Script....");
+				}
+			}

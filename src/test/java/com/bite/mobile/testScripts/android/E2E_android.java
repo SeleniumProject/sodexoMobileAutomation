@@ -1,4 +1,5 @@
 package com.bite.mobile.testScripts.android;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.bite.mobile.base.ScreenBase;
@@ -24,7 +25,6 @@ public class E2E_android extends TestBase {
 	OrderLib_android order;
 	LinkCardLib_android card;
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(priority = 0, description = "Launching Bite App and Search for Location", dataProvider = "launch")
 	public void LaunchBiteApp(String location) throws Throwable {
 		test = extent.startTest("TS01_Bite App: Launch App and Search For Location");
@@ -36,7 +36,6 @@ public class E2E_android extends TestBase {
 		}
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = true, priority = 1, dataProvider = "login")
 	public void Login(String email, String password) throws InterruptedException {
 		test = extent.startTest("TS03_Bite App: Login to Bite App");
@@ -48,7 +47,6 @@ public class E2E_android extends TestBase {
 		}
 	}
 	
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 2, dataProvider = "menuData")
 	public void selectingItem(String menuType, String itemName) {
 		test = extent.startTest("TS03_Bite App: Selecting menu and item");
@@ -62,7 +60,6 @@ public class E2E_android extends TestBase {
 		}
 	}
 	
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 1, dataProvider = "CreateAccountData")
 	public void createAnAccount(String email, String createAnAccountlbl, String nextletscreateaccountlbl,
 			String firstName, String lastName, String password, String verifyPwd, String monthoption, String yearoption,
@@ -78,7 +75,6 @@ public class E2E_android extends TestBase {
 		}
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 1)
 	public void continueAsGuest() {
 		try {
@@ -87,7 +83,6 @@ public class E2E_android extends TestBase {
 		}
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 2, dataProvider = "orderdata")
 	public void Order(String menuType, String itemName) throws InterruptedException {
 		test = extent.startTest("TS04_Bite App: Order item");
@@ -99,7 +94,6 @@ public class E2E_android extends TestBase {
 		PageInstance.menus().clickOnReviewOrder();
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 3, dataProvider = "login")
 	public void LoginFromOrder(String email, String password) throws InterruptedException {
 		test = extent.startTest("TS05_Bite App: Login from order");
@@ -107,7 +101,6 @@ public class E2E_android extends TestBase {
 		Login(email, password);
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 5, dataProvider = "instructions")
 	public void finalOrder(String instruction) throws InterruptedException {
 		PageInstance.order().SwipDown();
@@ -115,14 +108,12 @@ public class E2E_android extends TestBase {
 		PageInstance.order().placeOrder();
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 6, dataProvider = "cardDetails")
 	public void LinkCard(String cardnumber, String mm, String year, String cvv, String zipcode) throws InterruptedException {
 		PageInstance.order().AddPaymentMethod();
 		PageInstance.card().FillCardDetails(cardnumber, mm, year, cvv, zipcode);
 	}
 
-	@Attributes(Category = "Regression", State = "Ready")
 	@Test(enabled = false, priority = 3, dataProvider = "review")
 	public void reviewOrder(String reviewcomments, String menuorder) {
 		test = extent.startTest("TS04_Bite App: Review Order with Rating");
@@ -174,5 +165,13 @@ public class E2E_android extends TestBase {
 	@DataProvider(name = "cardDetails")
 	public static Object[][] cardDetails() {
 		return TestUtil.getData("cardDetails");
+	}
+	
+	@AfterTest
+	public void endSession() {
+		extent.endTest(test);
+		extent.flush();
+		extent.close();
+		System.out.println("Ending Script....");
 	}
 }

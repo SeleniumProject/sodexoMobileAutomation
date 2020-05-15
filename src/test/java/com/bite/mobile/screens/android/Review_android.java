@@ -15,7 +15,7 @@ public class Review_android extends ScreenBase {
 
 	}
 	public static By pleaserateyourexp;
-	public static By emoji;
+	public static By emojismile;
 	public static By didyouenjoy;
 	public static By wasitagood;
 	public static By wouldyoueat;
@@ -26,18 +26,20 @@ public class Review_android extends ScreenBase {
 	public static By backbtn;
 	public static By backbntn1;
 	public static By backbntn2;
+	public static By closebtn;
 
 	
 
 	static {
 		
 		pleaserateyourexp = By.xpath("//android.widget.TextView[@text='Please rate your experience:']");
-		emoji = By.xpath("//android.widget.Button");
+		emojismile = By.xpath("//*[@contentDescription='UITestEmojiControl']");
 		commentstxt = By.xpath("//*[@text='Describe your experience']");
 		submitbtn = By.xpath("//android.widget.Button[@content-desc='UITestSubmitSurvey']");
 		tellusabout = By.xpath("//android.widget.TextView[@text='Tell us about your experience']");
 		backbtn = By.xpath("//android.widget.ImageButton");
 		backbntn1 = By.xpath("//android.widget.ImageView");
+		closebtn = By.xpath("//*[@text='Close']");
 	
 	}
 	

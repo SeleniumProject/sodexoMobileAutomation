@@ -32,7 +32,7 @@ public class MenusLib_ios extends ScreenBase{
 	public void selectOrderTab() throws InterruptedException {
 		waitforPageLoad(5);
 		LongPressButton(Menus_iOS.ordertab);
-		waitforPageLoad(5);
+		waitforPageLoad(20);
 
 	}
 	
@@ -57,11 +57,11 @@ public class MenusLib_ios extends ScreenBase{
 		
 	}
 	
-	public void clickAddToMyOrder() throws InterruptedException {
+	public void AddToMyOrder() throws InterruptedException {
 		waitforPageLoad(5);
-		Menus_iOS.clickAddToMyOrder();
+		LongPressButton(Menus_iOS.addtomyorder);
 		waitforPageLoad(5);
-		Menus_iOS.clickAddToMyOrder();
+		LongPressButton(Menus_iOS.addtomyorder);
 	}
 	public void LetsOrderButton() throws InterruptedException {
 		waitforPageLoad(5);
@@ -69,23 +69,28 @@ public class MenusLib_ios extends ScreenBase{
 
 //		LongPressButton(MenusScreen_android.letsorder);
 	}
-	public void clickOnReviewOrder() throws InterruptedException {
+	public void OnReviewOrder() throws InterruptedException {
 		waitforPageLoad(5);
-		Menus_iOS.clickOnReviewOrder();
+		LongPressButton(Menus_iOS.revieworder);
 		waitforPageLoad(5);
 		
 	}
-	public  void selectMenu(String menuType) throws InterruptedException {
-		LongPressButton(Menus_iOS.menustab);
-		Menus_iOS.selectMenuItem(menuType);
+	
+	public void Login() throws InterruptedException {
+		waitforPageLoad(5);
+		LongPressButton(Menus_iOS.loginbtn);
 	}
-	public void selectDateAndItem(String date) throws InterruptedException {
-		Thread.sleep(2000);
+	public  void selectMenu(String menuType) throws InterruptedException {
+		waitforPageLoad(5);
+		LongPressButton(Menus_iOS.menustab);
+		waitforPageLoad(15);
+		
+		//Menus_iOS.selectMenuItem(menuType);
+	}
+	public void selectDate(String date) throws InterruptedException {
+		waitforPageLoad(5);
 		Menus_iOS.selectDate(date);
-		Thread.sleep(2000);
-		LongPressButton(Menus_iOS.item);
-		Thread.sleep(2000);
-		LongPressButton(Menus_iOS.reviewbtn);
+		
 	}
 
 	

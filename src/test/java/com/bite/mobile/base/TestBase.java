@@ -3,17 +3,9 @@ package com.bite.mobile.base;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-
-import com.bite.mobile.utility.AppiumServer;
 import com.bite.mobile.utility.CommonUtils;
 import com.bite.mobile.utility.ExcelReader;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -43,11 +35,12 @@ public class TestBase {
 		
 		extent.addSystemInfo("APP Type", "NATIVE");
 		extent.addSystemInfo("APP NAME", "Bite");
-		if (loadPropertyFile.contains("IOS")) {
-			extent.addSystemInfo("Target Device","iOS");
-		} else {
-		extent.addSystemInfo("Target Device","Android");
-		}
+		System.out.println("App name");
+//		if (loadPropertyFile.contains("IOS")) {
+//			extent.addSystemInfo("Target Device","iOS");
+//		} else {
+//		extent.addSystemInfo("Target Device","Android");
+//		}
 
 	}
 	
@@ -78,14 +71,10 @@ public class TestBase {
 			}
 		}
 	}
-	
-	@AfterTest
-	public void endSession() {
-		extent.endTest(test);
-		extent.flush();
-		extent.close();
-		System.out.println("Ending Script....");
+	public void resetApp() {
+		driver.resetApp();
 	}
+
 	
 	@AfterSuite
 	public void tearDown() throws InterruptedException{

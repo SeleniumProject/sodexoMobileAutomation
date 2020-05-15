@@ -3,6 +3,7 @@ package com.bite.mobile.screens.ios;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import com.bite.mobile.base.ScreenBase;
 import io.appium.java_client.AppiumDriver;
@@ -28,6 +29,7 @@ public class Menus_iOS extends ScreenBase {
 	public static By reviewbtn;
 	public static By addtomyorder;
 	public static By revieworder;
+	public static By loginbtn;
 
 	
 
@@ -44,6 +46,7 @@ public class Menus_iOS extends ScreenBase {
 		reviewbtn = By.xpath("//*[@text='REVIEW']");
 		addtomyorder = By.xpath("//*[@text='ADD TO MY ORDER']");
 		revieworder = By.xpath("//*[@text='REVIEW ORDER']");
+		loginbtn = By.xpath("//*[@text='LOGIN']");
 	}
 	
 	public static void selectDate(String date) throws InterruptedException {
@@ -53,6 +56,10 @@ public class Menus_iOS extends ScreenBase {
 	
 	public static  void selectMenuItem(String menuType) throws InterruptedException {
 		waitForElementpresent(menuitems);
+		System.out.println(driver.getSettings());
+		System.out.println(driver.getContext());
+		System.out.println(driver.getAppStringMap());
+		waitforPageLoad(5);
 		LongPressButton(menuitems);
 		}
 	public static void clickOnReviewOrder() throws InterruptedException {

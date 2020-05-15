@@ -37,14 +37,26 @@ public class ReviewLib_android extends ScreenBase{
 
 	public void fillReview(String comment) throws InterruptedException {
 		waitforPageLoad(5);
+		LongPressButton(Review_android.emojismile);
+		waitforPageLoad(5);
+		scrollToView(Review_android.commentstxt);
+		waitforPageLoad(5);
+		waitForElementpresent(Review_android.commentstxt);
 		Type(Review_android.commentstxt, comment, commentstxt);
 		waitforPageLoad(5);
+		scrollToView(Review_android.submitbtn);
 		click(Review_android.submitbtn, submitbtn);
+		waitforPageLoad(5);
+		LongPressButton(Review_android.closebtn);
 	}
 
-	public void backToOrderMenu() {
+	public void backToOrderMenu() throws InterruptedException {
+		waitforPageLoad(5);
+		waitForElementpresent(Review_android.backbtn);
 		click(Review_android.backbtn, submitbtn);
+		waitForElementpresent(Review_android.backbntn1);
 		click(Review_android.backbntn1, backfromreceipedetails);
+		waitForElementpresent(Review_android.backbntn2);
 		click(Review_android.backbntn2, backfromdateitem);
 		
 	}

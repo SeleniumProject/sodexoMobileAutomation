@@ -53,7 +53,7 @@ public class CreateAccountLib_android extends ScreenBase{
 		     Assert.assertEquals(actualText, createAnAccountlbl);
 		     Type(CreateAccount_android.emailtxt, email, emailtxt);
 		     click(CreateAccount_android.nextbtn, nextbtn);
-		 	waitforPageLoad(5);
+		 	 waitforPageLoad(5);
 		     String text = getText(CreateAccount_android.nextletscreateanaccountlbl);
 		     System.out.println(text +"next lets create ");
 		     Assert.assertEquals(text, nextletscreateaccountlbl);
@@ -63,15 +63,13 @@ public class CreateAccountLib_android extends ScreenBase{
 		     Type(CreateAccount_android.verifypasswordtxt, verifyPwd, verifypassword);
 		     click(CreateAccount_android.termsconditionchkbox, termsconditionchkbox);
 		     click(CreateAccount_android.signupbtn, signupbtn);
-		 	waitforPageLoad(5);
+		 	 waitforPageLoad(5);
 		     LongPressButton(CreateAccount_android.Monthbtn);
 		     
 		     CreateAccount_android.selectValueFromPopUp(monthoption, month);
-		    // LongPressButton(CreateAccountScreen.yearbtn);
 		     Tap(799, 907, year);
 		     CreateAccount_android.selectValueFromPopUp(yearoption, year);
 		     Tap(248, 1113, gender);
-//		     LongPressButton(CreateAccountScreen.genderbtn);
 		     CreateAccount_android.selectValueFromPopUp(genderoption, gender);
 		     Tap(154, 1290, phonenumber);
 		     Type(CreateAccount_android.mobilenotxt, "+1 301-987-4772", phonenumber);
