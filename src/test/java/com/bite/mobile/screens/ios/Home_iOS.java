@@ -35,6 +35,7 @@ public class Home_iOS extends ScreenBase {
 	public static By locationFrompreviouslocation;
 	public static By existinglocationtop;
 	public static By menutab;
+	public static By continueasguest;
 
 
 	static {
@@ -51,6 +52,7 @@ public class Home_iOS extends ScreenBase {
 		menutab =By.xpath("//*[@text='MENUS']");
 		iconlocationhistory =By.xpath("//*[@text='icn location history']");
 		existinglocationtop =By.xpath("//*[@class='UIAStaticText']");
+		continueasguest =By.xpath("//*[@text='Continue as guest']");
 	}
 	
 	public static MobileElement isMenuTabDisplayed() {

@@ -62,6 +62,7 @@ public class ReviewLib_ios extends ScreenBase{
 		waitforPageLoad(5);
 		waitForElementpresent(Review_ios.closepopup);
 		LongPressButton(Review_ios.closepopup);
+		waitforPageLoad(20);
 	}
 	public void EnterExperienceComments(String value) throws InterruptedException {
 		waitforPageLoad(5);
@@ -81,11 +82,8 @@ public class ReviewLib_ios extends ScreenBase{
 
 
 	public void backToOrderMenu() throws InterruptedException {
-		
-		waitForElementpresent(Review_ios.backbtn);
-		click(Review_ios.backbtn, backbuttonfromreview);
 		waitforPageLoad(5);
-		Review_ios.backButton();
-		
+		click(Review_ios.backbtn, backbuttonfromreview);
+		waitforPageLoad(10);
 	}
 }

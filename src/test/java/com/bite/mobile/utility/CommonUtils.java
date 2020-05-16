@@ -100,11 +100,12 @@ public class CommonUtils {
 				CommonUtils.AUTOMATION_INSTRUMENTATION);
 //		capabilities.setCapability("resetOnSessionStartOnly",true);
 		capabilities.setCapability("ios.native",true);
-		capabilities.setCapability("unicodeKeyboard", "true");                                     
+		capabilities.setCapability("installOnlyForUpdate", true);
+//		capabilities.setCapability("unicodeKeyboard", "true");                                     
 		capabilities.setCapability("resetKeyboard", "true");
 //		capabilities.setCapability("applicationClearData",true);
 		capabilities.setCapability("instrumentApp", true);
-		capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
+		capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
 //		capabilities.setCapability(MobileCapabilityType.NO_RESET, "True");
 
 		//capabilities.setCapability(MobileCapabilityType.APP, CommonUtils.APPLICATION_NAME);

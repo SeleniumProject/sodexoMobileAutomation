@@ -87,6 +87,7 @@ public class MenusLib_android extends ScreenBase{
 	}
 	
 	public void selectPayTab() throws InterruptedException {
+		waitforPageLoad(5);
 		waitForElementpresent(Menus_android.paytab);
 		LongPressButton(Menus_android.paytab);
 		waitforPageLoad(5);

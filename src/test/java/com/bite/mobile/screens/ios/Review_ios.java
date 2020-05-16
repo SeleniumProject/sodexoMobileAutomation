@@ -64,9 +64,9 @@ public class Review_ios extends ScreenBase {
 	public static void backButton() throws InterruptedException {
 		waitforPageLoad(5);
 	
-		((AppiumDriver<MobileElement>) driver).navigate().back();
+		//((AppiumDriver<MobileElement>) driver).navigate().back();
 		waitforPageLoad(5);
-		((AppiumDriver<MobileElement>) driver).navigate().back();
+		//((AppiumDriver<MobileElement>) driver).navigate().back();
 	}
 	public String getRateText() throws InterruptedException {
 		waitforPageLoad(5);

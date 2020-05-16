@@ -30,9 +30,9 @@ public class MenusLib_ios extends ScreenBase{
 	}
 	
 	public void selectOrderTab() throws InterruptedException {
-		waitforPageLoad(5);
+		waitforPageLoad(10);
 		LongPressButton(Menus_iOS.ordertab);
-		waitforPageLoad(20);
+		waitforPageLoad(10);
 
 	}
 	
@@ -58,7 +58,7 @@ public class MenusLib_ios extends ScreenBase{
 	}
 	
 	public void AddToMyOrder() throws InterruptedException {
-		waitforPageLoad(5);
+		waitforPageLoad(10);
 		LongPressButton(Menus_iOS.addtomyorder);
 		waitforPageLoad(5);
 		LongPressButton(Menus_iOS.addtomyorder);
@@ -82,8 +82,9 @@ public class MenusLib_ios extends ScreenBase{
 	}
 	public  void selectMenu(String menuType) throws InterruptedException {
 		waitforPageLoad(5);
+		waitForElementpresent(Menus_iOS.menustab);
 		LongPressButton(Menus_iOS.menustab);
-		waitforPageLoad(15);
+		waitforPageLoad(30);
 		
 		//Menus_iOS.selectMenuItem(menuType);
 	}

@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import com.bite.mobile.base.ScreenBase;
+import com.bite.mobile.screens.android.Menus_android;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -47,6 +49,12 @@ public class Menus_iOS extends ScreenBase {
 		addtomyorder = By.xpath("//*[@text='ADD TO MY ORDER']");
 		revieworder = By.xpath("//*[@text='REVIEW ORDER']");
 		loginbtn = By.xpath("//*[@text='LOGIN']");
+	}
+	
+	public void selectPayTab() throws InterruptedException {
+		waitForElementpresent(Menus_android.paytab);
+		LongPressButton(Menus_android.paytab);
+		waitforPageLoad(5);
 	}
 	
 	public static void selectDate(String date) throws InterruptedException {

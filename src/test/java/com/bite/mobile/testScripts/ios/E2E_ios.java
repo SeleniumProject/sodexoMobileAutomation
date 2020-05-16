@@ -36,6 +36,7 @@ import com.gargoylesoftware.htmlunit.Page;
 					test = extent.startTest("Bite App: Launch App and Search For Location");
 					try {
 						PageInstance.home_ios().LaunchApp(location);
+//						PageInstance.home_ios().continueAsGuest();
 					} catch (Throwable e) {
 			
 						e.printStackTrace();
@@ -70,26 +71,28 @@ import com.gargoylesoftware.htmlunit.Page;
 						PageInstance.review_ios().EnterExperienceComments("Food is good");
 						PageInstance.review_ios().submitReview();
 						PageInstance.review_ios().closePopUP();
-						PageInstance.review_ios().backToOrderMenu();
 						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			
-				@Attributes(Category = "Regression", State = "Ready")
-				@Test(enabled = true, priority = 3, dataProvider = "orderdata_ios")
-				public void Order(String menuType, String itemName) throws InterruptedException {
+				@Test(enabled = true, priority = 3)
+				public void Order() throws Throwable {
 					test = extent.startTest("Bite App: Order item");
 					PageInstance.menus_ios().selectOrderTab();
 					// menus.LetsOrderButton();
-				//	PageInstance.menus_ios().selectMenuFromOrder();
-					
-					//PageInstance.menus_ios().selectItemFromOrderList(itemName);
-				//	PageInstance.menus_ios().SelectItemFromItemDetails("White", "Double");
 					PageInstance.menus_ios().AddToMyOrder();
 					PageInstance.menus_ios().OnReviewOrder();
 					PageInstance.menus_ios().Login();
+					PageInstance.ca_ios().enterEmailPressNext("bitetest34@gmail.com");
+					PageInstance.login_ios().Login("bitetest34@gmail.com", "Gmail123");
+					
+					PageInstance.menus().selectPayTab();
+					PageInstance.menus().clickBitePay();
+					PageInstance.card().AddPaymentMethod();
+					PageInstance.card().FillCardDetails("5399999999999999", "12", "2023", "999", "98760");
+					
 				}
 			
 				@Attributes(Category = "Regression", State = "Ready")

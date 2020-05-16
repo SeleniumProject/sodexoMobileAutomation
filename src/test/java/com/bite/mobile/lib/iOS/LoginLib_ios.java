@@ -25,6 +25,7 @@ public class LoginLib_ios extends ScreenBase{
               //Type(LoginScreen_android.emailedittxt, email, emailtxt);
               Type(Login_iOS.passwordtxt, password, passwordtxt);
               click(Login_iOS.SigninSignupbtn, signinbtn);
+              waitforPageLoad(20);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

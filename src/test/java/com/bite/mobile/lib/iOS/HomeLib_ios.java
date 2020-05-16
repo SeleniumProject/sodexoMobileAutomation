@@ -26,6 +26,10 @@ public class HomeLib_ios extends ScreenBase{
 		
 	}
 
+	public void continueAsGuest() throws InterruptedException {
+		waitforPageLoad(10);
+		LongPressButton(Home_iOS.continueasguest);
+	}
 	/**
 	 * This function used to launch the Bite Application, Search for Location and Select the Location
 	 * @param location
@@ -38,6 +42,15 @@ public class HomeLib_ios extends ScreenBase{
 //			click(HomeScreen_iOS.allowbtn, allowbtn);
 //			LongPressButton(Home_iOS.okbtn);
 			waitforPageLoad(10);
+//			click(Home_iOS.okbtn,okbtn);
+//			waitforPageLoad(5);
+//			Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
+//			waitforPageLoad(5);		
+//			LongPressButton(Home_iOS.searchButton);
+//			waitforPageLoad(5);		
+//			LongPressButton(Home_iOS.iconlocationhistory);
+//			waitforPageLoad(5);	
+//           Home_iOS.clickPreviousLocation("CROSSROADS CAFE");
 			if (Home_iOS.isMenuTabDisplayed().isDisplayed()) {
 				Home_iOS.isMenuTabDisplayed().click();
 				Home_iOS.clickExistingLocationTop();
@@ -50,8 +63,9 @@ public class HomeLib_ios extends ScreenBase{
 				waitforPageLoad(5);		
 				LongPressButton(Home_iOS.iconlocationhistory);
 				waitforPageLoad(5);	
-	           Home_iOS.clickPreviousLocation("CROSSROADS CAFE");
+	           Home_iOS.clickPreviousLocation("CHILDRENS HOSPITAL LOS");
 			}
+//			}
 //			else if(Home_iOS.isOkPopUpDisplayed().isDisplayed()) {
 //				
 //				
@@ -82,17 +96,17 @@ public class HomeLib_ios extends ScreenBase{
 //				//LongPressButton(Home_iOS.okbtn);
 //				
 //			}
-			else if (Home_iOS.isOkPopUpDisplayed().isDisplayed()) {
-				click(Home_iOS.okbtn,okbtn);
-				waitforPageLoad(5);
-				Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
-				waitforPageLoad(5);		
-				LongPressButton(Home_iOS.searchButton);
-				waitforPageLoad(5);		
-				LongPressButton(Home_iOS.iconlocationhistory);
-				waitforPageLoad(5);	
-	           Home_iOS.clickPreviousLocation("CROSSROADS CAFE");
-			}
+//			else if (Home_iOS.isOkPopUpDisplayed().isDisplayed()) {
+//				click(Home_iOS.okbtn,okbtn);
+//				waitforPageLoad(5);
+//				Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
+//				waitforPageLoad(5);		
+//				LongPressButton(Home_iOS.searchButton);
+//				waitforPageLoad(5);		
+//				LongPressButton(Home_iOS.iconlocationhistory);
+//				waitforPageLoad(5);	
+//	           Home_iOS.clickPreviousLocation("CROSSROADS CAFE");
+//			}
 //			else if (Home_iOS.isIconLocationHistoryDisplayed().isDisplayed()) {
 //				Type(Home_iOS.searchlocationnametext, location, searchLocationtxt);
 //				Thread.sleep(3000);

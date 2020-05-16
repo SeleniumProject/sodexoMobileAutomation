@@ -35,6 +35,7 @@ public class CreateanAccountLib_ios extends ScreenBase{
 		
 	}
 	public void enterEmailPressNext(String email) throws InterruptedException {
+		waitforPageLoad(8);
 	     Type(CreateAccount_iOS.emailtxt, email, emailtxt);
 	     waitforPageLoad(5);
 	     LongPressButton(CreateAccount_iOS.nextbtn);
